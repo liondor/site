@@ -6,26 +6,33 @@ var qs = require('qs');
 class App extends Component {
  constructor() {
     super();
-    this.state = { data: null, token:[], articles:[], tokenLoaded:false};
+    this.state = { data: null, token:[], articles:null, tokenLoaded:false, test:''};
     this.loadDestinations = this.loadDestinations.bind(this);
     this.updateData = this.updateData.bind(this);
     this.loadArticles = this.loadArticles.bind(this);
 
-  }
+  };
+
   render() {
+     let str='';
+    for( let key in this.state.articles)
+  {
+    str+=key.attributes
+  console.log(str)
+  }
+
     return (
       <div className="App">
        <DestinationList
           data={this.state.data}
         />
-
-
-{this.state.token.access_token}
-{console.log(this.state.token)}
-{console.log(this.state.articles)}
-
-
-
+        {this.state.articles !== null &&
+        this.state.articles !== undefined &&
+        this.state.articles.length > 0 ?
+          this.state.articles.map(item =><div> {item.attributes.title} </div> )
+          :
+          <div>No articles found.</div>
+        }
       </div>
     );
   }
@@ -41,6 +48,11 @@ class App extends Component {
    this.setState({data: responseData.data});
  }componentWillMount() {
    this.loadDestinations();
+ }
+ componentDidUpdate()
+ {
+   console.log(this.state.token)
+   console.log(this.state.articles)
  }
 componentDidMount()
 {
@@ -60,15 +72,15 @@ fetch('http://localhost:8900/dsin/web/oauth/token', {
 }).then((response) => response.json()).then((responseData) =>
 	this.setState({token :responseData, tokenLoaded:true},
 ))
-fetch('http://localhost:8900/dsin/web/jsonapi/node/article', {
+fetch('http://localhost:8900/dsin/web/jsonapi/node/destination', {
   method: 'GET',
   headers: {
     'Autohrization': 'Beaver' +this.state.token.access_token,
+    'Accept': 'application/vnd.api+json',
   },
-}).then((response) => response.json()).then((responseData) =>	this.setState({articles :responseData},
+}).then((response) => response.json()).then((data) =>	this.setState({articles :data.data},
+
 ))
-console.log(this.state.token)
-  console.log(this.state.articles)
 }
 loadArticles(connectionAPI) {
       console.log(connectionAPI)
