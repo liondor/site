@@ -1,21 +1,32 @@
 import React from 'react';
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
+import logo from './Logo.png';
 
 export default class Header extends React.Component {
 
     render() {
         return (
             <Router>
+                <div className={"top_of_header"}>
+                    <div className={"logo_container"}>
+                        <Link to="/"><img className={"logo"} src={logo}/></Link>
+                    </div>
+                    <div className={"searchbar_container"}>
+                        <input type={"text"} placeholder={"Rechercher..."}/>
+                        <input type={"submit"}/>
+                    </div>
+                </div>
                 <div>
+
                     <ul>
                         <li>
-                            <Link to="/">Home</Link>
+                            <Link to="/Outils">Outils informatiques & nos missions</Link>
                         </li>
                         <li>
-                            <Link to="/about">About</Link>
+                            <Link to="/about">Qui sommes-nous</Link>
                         </li>
                         <li>
-                            <Link to="/dashboard">Dashboard</Link>
+                            <Link to="/projets">Nos projets</Link>
                         </li>
                     </ul>
 
@@ -35,8 +46,11 @@ export default class Header extends React.Component {
                         <Route path="/about">
                             <About/>
                         </Route>
-                        <Route path="/dashboard">
-                            <Dashboard/>
+                        <Route path="/outils">
+                            <Outils/>
+                        </Route>
+                        <Route path="/projets">
+                            <Projets/>
                         </Route>
                     </Switch>
                 </div>
@@ -61,10 +75,18 @@ export default class Header extends React.Component {
             );
         }
 
-        function Dashboard() {
+        function Outils() {
             return (
                 <div>
-                    <h2>Dashboard</h2>
+                    <h2>Outils informatiques & nos missions</h2>
+                </div>
+            );
+        }
+
+        function Projets() {
+            return (
+                <div>
+                    <h2>Nos projets</h2>
                 </div>
             );
         }
