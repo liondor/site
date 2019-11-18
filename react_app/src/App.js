@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import DestinationList from "./Components/Destination/DestinationList";
+import Header from "./Components/Header";
+
 const LIST_URL = 'http://localhost:8900/dsin/web/jsonapi/node/destination';
 var qs = require('qs');
 class App extends Component {
@@ -22,8 +23,11 @@ class App extends Component {
   }
 
     return (
-      <div className="App">
-       <DestinationList
+        <div className="App">
+            <Header/>
+
+
+            {/*     <DestinationList
           data={this.state.data}
         />
         {this.state.articles !== null &&
@@ -32,7 +36,7 @@ class App extends Component {
           this.state.articles.map(item =><div> {item.attributes.title} </div> )
           :
           <div>No articles found.</div>
-        }
+        }*/}
       </div>
     );
   }
