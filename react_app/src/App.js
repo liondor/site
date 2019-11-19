@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Header from "./Components/Header";
 
-const LIST_URL = 'http://localhost:8900/dsin/web/jsonapi/node/destination';
+const LIST_URL = 'http://localhost:8900/dsin/web/jsonapi/node/conseils?fields[node--conseils]=title,body,field_images';
 var qs = require('qs');
 class App extends Component {
  constructor() {
@@ -15,16 +15,17 @@ class App extends Component {
   };
 
   render() {
-     let str='';
-    for( let key in this.state.articles)
-  {
-    str+=key.attributes
-  console.log(str)
-  }
-
     return (
         <div className="App">
             <Header/>
+            <p>  {this.state.articles !== null &&
+            this.state.articles !== undefined &&
+            this.state.articles.length > 0 ?
+                this.state.articles.map(item => <div><h1>{item.attributes.title}</h1>  {item.attributes.body.processed}
+                    <img src={item.relationships.field_image.data.id}/></div>)
+                :
+                <div>No destinationnnns found.</div>
+            }</p>
 
 
             {/*     <DestinationList
@@ -55,8 +56,9 @@ class App extends Component {
  }
  componentDidUpdate()
  {
-   console.log(this.state.token)
+     // console.log(this.state.token)
    console.log(this.state.articles)
+     console.log(this.state.data)
  }
 componentDidMount()
 {
@@ -76,7 +78,7 @@ fetch('http://localhost:8900/dsin/web/oauth/token', {
 }).then((response) => response.json()).then((responseData) =>
 	this.setState({token :responseData, tokenLoaded:true},
 ))
-fetch('http://localhost:8900/dsin/web/jsonapi/node/destination', {
+    fetch('http://localhost:8900/dsin/web/jsonapi/node/conseils', {
   method: 'GET',
   headers: {
     'Autohrization': 'Beaver' +this.state.token.access_token,
@@ -91,12 +93,9 @@ loadArticles(connectionAPI) {
   if(connectionAPI)
   {
 
-
-
   }
   console.log(this.state.articles)
 }
-
 
 }
 

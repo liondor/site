@@ -7,6 +7,7 @@ export default class Header extends React.Component {
     render() {
         return (
             <Router>
+
                 <div className={"top_of_header"}>
                     <div className={"logo_container"}>
                         <Link to="/"><img className={"logo"} src={logo}/></Link>
@@ -15,21 +16,19 @@ export default class Header extends React.Component {
                         <input type={"text"} placeholder={"Rechercher..."}/>
                         <input type={"submit"}/>
                     </div>
+                    <div>
+                        <Link to="/Outils">
+                            Outils numériques & nos missions
+                        </Link>
+                    </div>
+                    <div>
+                        <Link to="/about">Qui sommes-nous</Link>
+                    </div>
+                    <div>
+                        <Link to="/projets">Nos projets</Link>
+                    </div>
+
                 </div>
-                <div>
-
-                    <ul>
-                        <li>
-                            <Link to="/Outils">Outils informatiques & nos missions</Link>
-                        </li>
-                        <li>
-                            <Link to="/about">Qui sommes-nous</Link>
-                        </li>
-                        <li>
-                            <Link to="/projets">Nos projets</Link>
-                        </li>
-                    </ul>
-
                     <hr/>
 
                     {/*
@@ -53,7 +52,7 @@ export default class Header extends React.Component {
                             <Projets/>
                         </Route>
                     </Switch>
-                </div>
+
             </Router>
         );
         // You can think of these components as "pages"
@@ -78,7 +77,7 @@ export default class Header extends React.Component {
         function Outils() {
             return (
                 <div>
-                    <h2>Outils informatiques & nos missions</h2>
+                    <h2>Outils numériques & nos missions</h2>
                 </div>
             );
         }
