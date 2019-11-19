@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 import Header from "./Components/Header";
-import Carte from "./Components/Carte";
 
-const LIST_URL = 'http://localhost:8900/dsin/web/jsonapi/node/conseils?fields[node--conseils]=title,field_image&fields[file--file]=uri&include=field_image';
+const LIST_URL = 'http://localhost:8900/dsin/web/jsonapi/node/conseils?fields[node--conseils]=title,body,field_image&fields[file--file]=uri&include=field_image';
 var qs = require('qs');
 class App extends Component {
  constructor() {
@@ -16,19 +15,40 @@ class App extends Component {
   };
 
   render() {
+      if (this.state.database !== null) {
+          console.log("Pas null")
+          if (this.state.database !== undefined) {
+              console.log("Pas undefined")
+
+              var arrayOfConseils = this.state.database.data.map(item => item.attributes.body.value)
+              var arrayOfTitle = this.state.database.data.map(item => item.attributes.title)
+              var arrayOfImage = this.state.database.included.map(item => item.attributes.uri.url)
+
+              for (let index in arrayOfConseils.length) {
+                  //Etant donnée que ces données sont dans l'ordre, j'essayais de créer directement une liste de carte ici puis d'afficher le
+                  //tout dans le navigateur
+                  //    <Carte titre={arrayOfTitle[index]} conseil={arrayOfConseils[index]} image={arrayOfImage[index]}  />
+              }
+
+          }
+
+
+      } else {
+
+      }
+
+
+
     return (
         <div className="App">
             <Header/>
             <div className="Conteneur">
-                {this.state.database !== null &&
-                this.state.database !== undefined &&
-                this.state.database.length > 0 ?
+                {
                     /*this.state.articles.map(item => <div><h1>{item.attributes.title}</h1>  <div dangerouslySetInnerHTML={{__html:item.attributes.body.value}}></div>
-                         <img src={item.relationships.field_image.data.id}/></div>)
-                     */
-                    this.state.database.map(item => <Carte data={item}/>)
-                    :
-                    <div>No destinatiions found.</div>
+                        <img src={item.relationships.field_image.data.id}/></div>)
+                    */
+
+
                 }
             </div>
 
@@ -61,7 +81,7 @@ class App extends Component {
  componentDidUpdate()
  {
      console.log(this.state.token)
-   console.log(this.state.articles)
+     console.log(this.state.articles)
      console.log(this.state.database)
  }
 componentDidMount()
