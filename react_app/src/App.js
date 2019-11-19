@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import './App.css';
 import Header from "./Components/Header";
+import Carte from "./Components/Carte";
 
-const LIST_URL = 'http://localhost:8900/dsin/web/jsonapi/node/conseils?fields[node--conseils]=title,body,field_images';
+const LIST_URL = 'http://localhost:8900/dsin/web/jsonapi/node/conseils?fields[node--conseils]=title,field_image&fields[file--file]=uri&include=field_image';
 var qs = require('qs');
 class App extends Component {
  constructor() {
     super();
-    this.state = { data: null, token:[], articles:null, tokenLoaded:false, test:''};
+     this.state = {database: null, token: [], articles: null, tokenLoaded: false, test: ''};
     this.loadDestinations = this.loadDestinations.bind(this);
     this.updateData = this.updateData.bind(this);
     this.loadArticles = this.loadArticles.bind(this);
@@ -18,15 +19,18 @@ class App extends Component {
     return (
         <div className="App">
             <Header/>
-            <p>  {this.state.articles !== null &&
-            this.state.articles !== undefined &&
-            this.state.articles.length > 0 ?
-                this.state.articles.map(item => <div><h1>{item.attributes.title}</h1>  {item.attributes.body.processed}
-                    <img src={item.relationships.field_image.data.id}/></div>)
-                :
-                <div>No destinationnnns found.</div>
-            }</p>
-
+            <div className="Conteneur">
+                {this.state.database !== null &&
+                this.state.database !== undefined &&
+                this.state.database.length > 0 ?
+                    /*this.state.articles.map(item => <div><h1>{item.attributes.title}</h1>  <div dangerouslySetInnerHTML={{__html:item.attributes.body.value}}></div>
+                         <img src={item.relationships.field_image.data.id}/></div>)
+                     */
+                    this.state.database.map(item => <Carte data={item}/>)
+                    :
+                    <div>No destinatiions found.</div>
+                }
+            </div>
 
             {/*     <DestinationList
           data={this.state.data}
@@ -50,18 +54,21 @@ class App extends Component {
       .then((data) => this.updateData(data))
       .catch(err => console.log('Fetching Destinations Failed', err));
   } updateData(responseData) {
-   this.setState({data: responseData.data});
+        this.setState({database: responseData}, () => console.log(this.state));
  }componentWillMount() {
    this.loadDestinations();
  }
  componentDidUpdate()
  {
-     // console.log(this.state.token)
+     console.log(this.state.token)
    console.log(this.state.articles)
-     console.log(this.state.data)
+     console.log(this.state.database)
  }
 componentDidMount()
 {
+    if (this.state.token == null) {
+
+    }
 fetch('http://localhost:8900/dsin/web/oauth/token', {
   method: 'POST',
   headers: {
@@ -84,7 +91,7 @@ fetch('http://localhost:8900/dsin/web/oauth/token', {
     'Autohrization': 'Beaver' +this.state.token.access_token,
     'Accept': 'application/vnd.api+json',
   },
-}).then((response) => response.json()).then((data) =>	this.setState({articles :data.data},
+    }).then((response) => response.json()).then((data) => this.setState({articles: data.data,}, () => console.log(this.state)
 
 ))
 }

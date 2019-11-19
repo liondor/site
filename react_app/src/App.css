@@ -27,7 +27,7 @@
   width: 512px;
 }
 
-.top_of_header {
+.top_of_header, .Conteneur {
   display: grid;
   background-color: #00c2fb;
   grid-template-columns: auto auto auto;
