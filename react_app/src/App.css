@@ -73,6 +73,13 @@ a {
 
 }
 
+@media (max-width: 700px) {
+    .Conteneur {
+        grid-template-columns: auto auto;
+    }
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
