@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Header from "./Components/Header";
+import Carte from "./Components/Carte";
 
 const LIST_URL = 'http://localhost:8900/dsin/web/jsonapi/node/conseils?fields[node--conseils]=title,body,field_image&fields[file--file]=uri&include=field_image';
 var qs = require('qs');
@@ -23,12 +24,14 @@ class App extends Component {
               var arrayOfConseils = this.state.database.data.map(item => item.attributes.body.value)
               var arrayOfTitle = this.state.database.data.map(item => item.attributes.title)
               var arrayOfImage = this.state.database.included.map(item => item.attributes.uri.url)
-
+              var arrayOfCards;
               for (let index in arrayOfConseils.length) {
                   //Etant donnée que ces données sont dans l'ordre, j'essayais de créer directement une liste de carte ici puis d'afficher le
                   //tout dans le navigateur
+                  arrayOfCards[index] += [[arrayOfTitle[index], arrayOfConseils[index], arrayOfImage[index]]]
                   //    <Carte titre={arrayOfTitle[index]} conseil={arrayOfConseils[index]} image={arrayOfImage[index]}  />
               }
+              console.log(arrayOfCards)
 
           }
 
@@ -47,9 +50,13 @@ class App extends Component {
                     /*this.state.articles.map(item => <div><h1>{item.attributes.title}</h1>  <div dangerouslySetInnerHTML={{__html:item.attributes.body.value}}></div>
                         <img src={item.relationships.field_image.data.id}/></div>)
                     */
-
-
                 }
+                <Carte></Carte>
+                <Carte></Carte>
+                <Carte></Carte> <Carte></Carte>
+                <Carte></Carte>
+                <Carte></Carte>
+
             </div>
 
             {/*     <DestinationList
