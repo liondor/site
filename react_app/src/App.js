@@ -28,7 +28,7 @@ class App extends Component {
               for (let index in arrayOfConseils.length) {
                   //Etant donnée que ces données sont dans l'ordre, j'essayais de créer directement une liste de carte ici puis d'afficher le
                   //tout dans le navigateur
-                  arrayOfCards[index] += [[arrayOfTitle[index], arrayOfConseils[index], arrayOfImage[index]]]
+                  //         arrayOfCards[index] += [[arrayOfTitle[index], arrayOfConseils[index], arrayOfImage[index]]]
                   //    <Carte titre={arrayOfTitle[index]} conseil={arrayOfConseils[index]} image={arrayOfImage[index]}  />
               }
               console.log(arrayOfCards)

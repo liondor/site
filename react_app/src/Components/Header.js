@@ -7,7 +7,6 @@ export default class Header extends React.Component {
     render() {
         return (
             <Router>
-
                 <div className={"top_of_header"}>
                     <div className={"logo_container"}>
                         <Link to="/"><img className={"logo"} src={logo}/></Link>
@@ -16,18 +15,17 @@ export default class Header extends React.Component {
                         <input type={"text"} placeholder={"Rechercher..."}/>
                         <input type={"submit"}/>
                     </div>
-                    <div>
-                        <Link to="/Outils">
+                    <div className={"golden_text"}>
+                        <Link className={"golden_text"} to="/Outils">
                             Outils numériques & nos missions
                         </Link>
                     </div>
                     <div>
-                        <Link to="/about">Qui sommes-nous</Link>
+                        <Link className={"golden_text"} to="/about">Qui sommes-nous</Link>
                     </div>
                     <div>
-                        <Link to="/projets">Nos projets</Link>
+                        <Link className={"golden_text"} to="/projets">Nos projets</Link>
                     </div>
-
                 </div>
                     <hr/>
 
