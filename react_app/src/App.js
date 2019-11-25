@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
-import Header from "./Components/Header";
 import Carte from "./Components/Carte";
+import HeaderHook from "./Components/HeaderHook"
 
 const LIST_URL = 'http://localhost:8900/dsin/web/jsonapi/node/conseils?fields[node--conseils]=title,body,field_image&fields[file--file]=uri&include=field_image';
 var qs = require('qs');
@@ -37,7 +37,7 @@ class App extends Component {
         return (
             <div className="App">
                 <header>
-                    <Header/>
+                    <HeaderHook/>
                 </header>
                 <div className="Conteneur">
                     {

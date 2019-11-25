@@ -36,12 +36,8 @@
     grid-template-rows: auto minmax(0, 1fr);
     justify-content: space-evenly;
     align-content: center;
-    background-color: #61dafb;
 }
 
-.header div {
-    background-color: #CFFAFF;
-}
 
 .grid {
     width: 100%;
@@ -123,14 +119,32 @@ a {
 }
 
 @media (max-width: 768px) {
-    .logo_container {
-        grid-column-start: 2;
-        grid-column-end: 3;
+    .menu_disposition {
+        width: 100%;
+        grid-column: 1;
+        overflow: auto;
     }
 
-    .menu {
-        display: none;
+    .logo_container {
+        grid-column: 2;
+
     }
+
+    .header {
+        grid-template-columns: minmax(14rem, 1fr) minmax(14rem, 1fr) minmax(14rem, 28rem);
+        grid-template-rows: 1fr;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .header div {
+        background-color: #61dafb;
+    }
+
+    .BurgerMenu {
+        width: 100%;
+    }
+
 
     .hamcolor {
         background-color: red;

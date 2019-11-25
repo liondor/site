@@ -10,6 +10,24 @@ export default class Header extends React.Component {
         return (
             <Router>
                 <div className={"header"}>
+                    <div className={"menu_disposition"}>
+                        <ResponsiveMenu largeMenuClassName={""} smallMenuClassName={"BurgerMenu"}
+                                        menu={<div className={"grid"}>
+                                            <div className={"golden_text menu"}>
+                                                <Link className={"golden_text menu"} to="/Outils">
+                                                    Outils numériques & nos missions
+                                                </Link>
+                                            </div>
+                                            <div>
+                                                <Link className={"golden_text menu"} to="/about">Qui sommes-nous</Link>
+                                            </div>
+                                            <div>
+                                                <Link className={"golden_text menu"} to="/projets">Nos projets</Link>
+                                            </div>
+                                        </div>} changeMenuOn={"768px"} menuOpenButton={<MdMenu/>}
+                                        menuCloseButton={<MdMenu/>}/>
+                    </div>
+
                     <div className={"logo_container"}>
                         <Link to="/"><img className={"logo"} src={logo}/></Link>
                     </div>
@@ -17,45 +35,30 @@ export default class Header extends React.Component {
                         <input type={"text"} placeholder={"Rechercher..."}/>
                         <input type={"submit"}/>
                     </div>
-                    <div className={"menu_disposition"}>
-                        <ResponsiveMenu largeMenuClassName={""} smallMenuClassName={""} menu={<div className={"grid"}>
-                            <div className={"golden_text menu"}>
-                                <Link className={"golden_text menu"} to="/Outils">
-                                    Outils numériques & nos missions
-                                </Link>
-                            </div>
-                            <div>
-                                <Link className={"golden_text menu"} to="/about">Qui sommes-nous</Link>
-                            </div>
-                            <div>
-                                <Link className={"golden_text menu"} to="/projets">Nos projets</Link>
-                            </div>
-                        </div>} changeMenuOn={"768px"} menuOpenButton={<MdMenu/>} menuCloseButton={<MdMenu/>}/>
-                    </div>
                 </div>
-                    <hr/>
+                <hr/>
 
-                    {/*
+                {/*
               A <Switch> looks through all its children <Route>
               elements and renders the first one whose path
               matches the current URL. Use a <Switch> any time
               you have multiple routes, but you want only one
               of them to render at a time
             */}
-                    <Switch>
-                        <Route exact path="/">
-                            <Home/>
-                        </Route>
-                        <Route path="/about">
-                            <About/>
-                        </Route>
-                        <Route path="/outils">
-                            <Outils/>
-                        </Route>
-                        <Route path="/projets">
-                            <Projets/>
-                        </Route>
-                    </Switch>
+                <Switch>
+                    <Route exact path="/">
+                        <Home/>
+                    </Route>
+                    <Route path="/about">
+                        <About/>
+                    </Route>
+                    <Route path="/outils">
+                        <Outils/>
+                    </Route>
+                    <Route path="/projets">
+                        <Projets/>
+                    </Route>
+                </Switch>
 
             </Router>
 
