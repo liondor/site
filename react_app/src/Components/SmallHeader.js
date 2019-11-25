@@ -4,106 +4,103 @@ import logo from './Logo.png';
 import {MdSearch} from 'react-icons/md'
 import Hamburger from "./Hamburger";
 
+export default function SmallHeader() {
 
-export default class Header extends React.Component {
+    return (
+        <Router>
+            <div className={"header"}>
+                <div className={"menu_disposition"}>
+                    <Hamburger/>
+                    {
+                        /* <ResponsiveMenu largeMenuClassName={""} smallMenuClassName={"BurgerMenu"}
+                                     menu={<div className={"grid"}>
+                                         <div className={"golden_text menu"}>
+                                             <Link className={"golden_text menu"} to="/Outils">
+                                                 Outils numériques & nos missions
+                                             </Link>
+                                         </div>
+                                         <div>
+                                             <Link className={"golden_text menu"} to="/about">Qui sommes-nous</Link>
+                                         </div>
+                                         <div>
+                                             <Link className={"golden_text menu"} to="/projets">Nos projets</Link>
+                                         </div>
+                                     </div>} changeMenuOn={"768px"} menuOpenButton={<MdMenu/>}
+                                     menuCloseButton={<MdMenu/>}/>
+                 */}
 
-    render() {
-        return (
-            <Router>
-                <div className={"header"}>
-                    <div className={"menu_disposition"}>
-                        <Hamburger/>
-                        {
-                            /* <ResponsiveMenu largeMenuClassName={""} smallMenuClassName={"BurgerMenu"}
-                                         menu={<div className={"grid"}>
-                                             <div className={"golden_text menu"}>
-                                                 <Link className={"golden_text menu"} to="/Outils">
-                                                     Outils numériques & nos missions
-                                                 </Link>
-                                             </div>
-                                             <div>
-                                                 <Link className={"golden_text menu"} to="/about">Qui sommes-nous</Link>
-                                             </div>
-                                             <div>
-                                                 <Link className={"golden_text menu"} to="/projets">Nos projets</Link>
-                                             </div>
-                                         </div>} changeMenuOn={"768px"} menuOpenButton={<MdMenu/>}
-                                         menuCloseButton={<MdMenu/>}/>
-                     */}
-
-                    </div>
-
-                    <div className={"logo_container"}>
-                        <Link to="/">
-                            <img className={"logo"} src={logo}/>
-                        </Link>
-                    </div>
-                    <div className={"searchbar_container"}>
-                        <MdSearch/>
-                    </div>
                 </div>
-                <hr/>
 
-                {/*
+                <div className={"logo_container"}>
+                    <Link to="/">
+                        <img className={"logo"} src={logo}/>
+                    </Link>
+                </div>
+                <div className={"searchbar_container"}>
+                    <MdSearch/>
+                </div>
+            </div>
+            <hr/>
+
+            {/*
               A <Switch> looks through all its children <Route>
               elements and renders the first one whose path
               matches the current URL. Use a <Switch> any time
               you have multiple routes, but you want only one
               of them to render at a time
             */}
-                <Switch>
-                    <Route exact path="/">
-                        <Home/>
-                    </Route>
-                    <Route path="/about">
-                        <About/>
-                    </Route>
-                    <Route path="/outils">
-                        <Outils/>
-                    </Route>
-                    <Route path="/projets">
-                        <Projets/>
-                    </Route>
-                </Switch>
+            <Switch>
+                <Route exact path="/">
+                    <Home/>
+                </Route>
+                <Route path="/about">
+                    <About/>
+                </Route>
+                <Route path="/outils">
+                    <Outils/>
+                </Route>
+                <Route path="/projets">
+                    <Projets/>
+                </Route>
+            </Switch>
 
-            </Router>
+        </Router>
 
-        );
-        // You can think of these components as "pages"
+    );
+    // You can think of these components as "pages"
 // in your app.
 
-        function Home() {
-            return (
-                <div>
-                    <h2>Home</h2>
-                </div>
-            );
-        }
-
-        function About() {
-            return (
-                <div>
-                    <h2>About</h2>
-                </div>
-            );
-        }
-
-        function Outils() {
-            return (
-                <div>
-                    <h2>Outils numériques & nos missions</h2>
-                </div>
-            );
-        }
-
-        function Projets() {
-            return (
-                <div>
-                    <h2>Nos projets</h2>
-                </div>
-            );
-        }
-
+    function Home() {
+        return (
+            <div>
+                <h2>Home</h2>
+            </div>
+        );
     }
+
+    function About() {
+        return (
+            <div>
+                <h2>About</h2>
+            </div>
+        );
+    }
+
+    function Outils() {
+        return (
+            <div>
+                <h2>Outils numériques & nos missions</h2>
+            </div>
+        );
+    }
+
+    function Projets() {
+        return (
+            <div>
+                <h2>Nos projets</h2>
+            </div>
+        );
+    }
+
 
 }
