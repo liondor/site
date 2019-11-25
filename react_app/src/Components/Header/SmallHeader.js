@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react'
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
-import logo from './Logo.png';
+import logo from '../Logo.png';
 import {MdMenu, MdSearch} from 'react-icons/md'
+import Modal from "../Modal";
 
 export default function SmallHeader() {
     const [hasClicked, setHasClicked] = useState(false)
 
     useEffect(() => {
-        console.log("Test")
+        console.log(hasClicked)
     }, [hasClicked]);
     return (
         <Router>
@@ -43,6 +44,7 @@ export default function SmallHeader() {
                     <MdSearch/>
                 </div>
             </div>
+            <Modal show={hasClicked}/>
             <hr/>
 
             {/*

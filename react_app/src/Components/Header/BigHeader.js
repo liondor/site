@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
-import logo from './Logo.png';
+import logo from '../Logo.png';
 
 export default class BigHeader extends React.Component {
 
