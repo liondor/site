@@ -1,8 +1,9 @@
 import React from 'react';
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import logo from './Logo.png';
-import ResponsiveMenu from "react-responsive-navbar";
-import {MdMenu} from 'react-icons/md'
+import {MdSearch} from 'react-icons/md'
+import Hamburger from "./Hamburger";
+
 
 export default class Header extends React.Component {
 
@@ -11,29 +12,34 @@ export default class Header extends React.Component {
             <Router>
                 <div className={"header"}>
                     <div className={"menu_disposition"}>
-                        <ResponsiveMenu largeMenuClassName={""} smallMenuClassName={"BurgerMenu"}
-                                        menu={<div className={"grid"}>
-                                            <div className={"golden_text menu"}>
-                                                <Link className={"golden_text menu"} to="/Outils">
-                                                    Outils numériques & nos missions
-                                                </Link>
-                                            </div>
-                                            <div>
-                                                <Link className={"golden_text menu"} to="/about">Qui sommes-nous</Link>
-                                            </div>
-                                            <div>
-                                                <Link className={"golden_text menu"} to="/projets">Nos projets</Link>
-                                            </div>
-                                        </div>} changeMenuOn={"768px"} menuOpenButton={<MdMenu/>}
-                                        menuCloseButton={<MdMenu/>}/>
+                        <Hamburger/>
+                        {
+                            /* <ResponsiveMenu largeMenuClassName={""} smallMenuClassName={"BurgerMenu"}
+                                         menu={<div className={"grid"}>
+                                             <div className={"golden_text menu"}>
+                                                 <Link className={"golden_text menu"} to="/Outils">
+                                                     Outils numériques & nos missions
+                                                 </Link>
+                                             </div>
+                                             <div>
+                                                 <Link className={"golden_text menu"} to="/about">Qui sommes-nous</Link>
+                                             </div>
+                                             <div>
+                                                 <Link className={"golden_text menu"} to="/projets">Nos projets</Link>
+                                             </div>
+                                         </div>} changeMenuOn={"768px"} menuOpenButton={<MdMenu/>}
+                                         menuCloseButton={<MdMenu/>}/>
+                     */}
+
                     </div>
 
                     <div className={"logo_container"}>
-                        <Link to="/"><img className={"logo"} src={logo}/></Link>
+                        <Link to="/">
+                            <img className={"logo"} src={logo}/>
+                        </Link>
                     </div>
                     <div className={"searchbar_container"}>
-                        <input type={"text"} placeholder={"Rechercher..."}/>
-                        <input type={"submit"}/>
+                        <MdSearch/>
                     </div>
                 </div>
                 <hr/>

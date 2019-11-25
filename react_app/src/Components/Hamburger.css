@@ -1,7 +1,14 @@
 .hamcolor {
     background-color: #282c34;
-    height: .4rem;
-    width: 2rem;
-    margin: .2rem;
-    z-index: 1000;
+    height: 4px;
+    width: 100%;
+    margin: .2em;
+
+
+}
+
+.hamburger {
+
+    width: 1em;
+
 }
