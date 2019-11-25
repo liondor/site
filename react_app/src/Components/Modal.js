@@ -1,15 +1,23 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {MdCancel} from "react-icons/md"
 
 export default function Modal(props) {
-    if (props.show) {
+    const [close, setClose] = useState(false)
+    if (props.show && !close) {
         return (
             <>
-                Hello Modal
+                <MdCancel onClick={closeModal}/>
+                <p> Test {props.message}</p>
             </>
         );
     } else {
         return null;
     }
+
+    function closeModal() {
+        setClose(close => !close)
+    }
+
 
 
 }
