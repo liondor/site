@@ -1,16 +1,20 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react'
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import logo from './Logo.png';
 import {MdSearch} from 'react-icons/md'
 import Hamburger from "./Hamburger";
 
 export default function SmallHeader() {
+    const [hasClicked, setHasClicked] = useState(false)
 
+    useEffect(() => {
+        console.log("Test")
+    }, [hasClicked]);
     return (
         <Router>
             <div className={"header"}>
                 <div className={"menu_disposition"}>
-                    <Hamburger/>
+                    <Hamburger onClick={openModal}/>
                     {
                         /* <ResponsiveMenu largeMenuClassName={""} smallMenuClassName={"BurgerMenu"}
                                      menu={<div className={"grid"}>
@@ -69,6 +73,10 @@ export default function SmallHeader() {
     );
     // You can think of these components as "pages"
 // in your app.
+    function openModal() {
+        setHasClicked(hasClicked => !hasClicked)
+    }
+
 
     function Home() {
         return (
