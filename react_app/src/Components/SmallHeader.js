@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import logo from './Logo.png';
-import {MdSearch} from 'react-icons/md'
-import Hamburger from "./Hamburger";
+import {MdMenu, MdSearch} from 'react-icons/md'
 
 export default function SmallHeader() {
     const [hasClicked, setHasClicked] = useState(false)
@@ -14,7 +13,7 @@ export default function SmallHeader() {
         <Router>
             <div className={"header"}>
                 <div className={"menu_disposition"}>
-                    <Hamburger onClick={openModal}/>
+                    <MdMenu onClick={openModal}/>
                     {
                         /* <ResponsiveMenu largeMenuClassName={""} smallMenuClassName={"BurgerMenu"}
                                      menu={<div className={"grid"}>
