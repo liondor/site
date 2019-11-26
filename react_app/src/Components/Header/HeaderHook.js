@@ -9,17 +9,14 @@ function HeaderHook() {
             <>
                 <BigHeader/>
             </>
-
         );
     } else {
         return (
             <>
                 <SmallHeader/>
             </>
-
         );
     }
-
 }
 
 function getWindowDimensions() {
@@ -34,7 +31,6 @@ export function useWindowDimensions() {
     const [windowDimensions, setWindowDimensions] = useState(
         getWindowDimensions()
     );
-
     useEffect(() => {
         function handleResize() {
             setWindowDimensions(getWindowDimensions());
@@ -43,7 +39,6 @@ export function useWindowDimensions() {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
-
     return windowDimensions;
 }
 
