@@ -27,7 +27,7 @@
 }
 
 .Carte:hover img {
-    opacity: 60%;
+    filter: brightness(100%);
     -webkit-transition: .1s ease-in-out;
     transition: .1s ease-in-out;
 }
@@ -39,6 +39,8 @@
 
 .Carte img {
     width: 100%;
+    filter: brightness(85%);
+
 }
 
 .tag {

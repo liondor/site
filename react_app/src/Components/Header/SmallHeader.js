@@ -1,36 +1,36 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import logo from '../Logo.png';
 import {MdMenu, MdSearch} from 'react-icons/md'
-import Modal from "../Modal";
+import SideMenu from "./SideMenu";
 
-export default function SmallHeader() {
+
+let menu;
+menu = (toggle) => {
+    return (<>
+        <div className={"golden_text menu"}>
+            <Link className={"golden_text menu"} onClick={toggle} to="/Outils">
+                Outils numériques & nos missions
+            </Link>
+        </div>
+        <div>
+            <Link className={"golden_text menu"} onClick={toggle} to="/about">Qui sommes-nous</Link>
+        </div>
+        <div>
+            <Link className={"golden_text menu"} onClick={toggle} to="/projets">Nos projets</Link>
+        </div>
+    </>)
+};
+
+const SmallHeader = () => {
     const [hasClicked, setHasClicked] = useState(false)
-
-    useEffect(() => {
-        console.log(hasClicked)
-    }, [hasClicked]);
     return (
         <Router>
             <div className={"header"}>
                 <div className={"menu_disposition"}>
                     <MdMenu onClick={openModal}/>
                     {
-                        /* <ResponsiveMenu largeMenuClassName={""} smallMenuClassName={"BurgerMenu"}
-                                     menu={<div className={"grid"}>
-                                         <div className={"golden_text menu"}>
-                                             <Link className={"golden_text menu"} to="/Outils">
-                                                 Outils numériques & nos missions
-                                             </Link>
-                                         </div>
-                                         <div>
-                                             <Link className={"golden_text menu"} to="/about">Qui sommes-nous</Link>
-                                         </div>
-                                         <div>
-                                             <Link className={"golden_text menu"} to="/projets">Nos projets</Link>
-                                         </div>
-                                     </div>} changeMenuOn={"768px"} menuOpenButton={<MdMenu/>}
-                                     menuCloseButton={<MdMenu/>}/>
+                        /*
                  */}
 
                 </div>
@@ -44,10 +44,11 @@ export default function SmallHeader() {
                     <MdSearch/>
                 </div>
             </div>
-            <Modal show={hasClicked}/>
+            <SideMenu show={hasClicked} toggle={openModal} message={""} content={menu}/>
             <hr/>
 
             {/*
+             <Modal show={hasClicked} toggle={openModal} message={""}/>
               A <Switch> looks through all its children <Route>
               elements and renders the first one whose path
               matches the current URL. Use a <Switch> any time
@@ -113,3 +114,4 @@ export default function SmallHeader() {
 
 
 }
+export default SmallHeader;
