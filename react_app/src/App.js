@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Carte from "./Components/Carte";
 import HeaderHook from "./Components/Header/HeaderHook"
+import Bouton from './Components/Bouton'
 
 const LIST_URL = 'http://localhost:8900/dsin/web/jsonapi/node/conseils?fields[node--conseils]=title,body,field_image&fields[file--file]=uri&include=field_image';
 var qs = require('qs');
@@ -45,11 +46,12 @@ class App extends Component {
                             <img src={item.relationships.field_image.data.id}/></div>)
                         */
                     }
-                    <Carte></Carte>
-                    <Carte></Carte>
-                    <Carte></Carte> <Carte></Carte>
-                    <Carte></Carte>
-                    <Carte></Carte>
+                    <Bouton/>
+                    <Carte/>
+                    <Carte/>
+                    <Carte/> <Carte/>
+                    <Carte/>
+                    <Carte/>
 
                 </div>
 

@@ -61,6 +61,13 @@ button {
     background-color: white;
 }
 
+.arrowIcon {
+    display: inline-flex;
+    border-radius: 50%;
+    padding: 50px;
+    background-color: #008DF5;
+}
+
 .button-default {
     background: #247BA0;
     color: #fff;
@@ -142,10 +149,18 @@ hr {
     margin: auto;
 }
 
+input[type="text"] {
+    background-color: #E8E9EB;
+    border: none;
+}
 
 .golden_text {
     color: #b69d5a;
     text-transform: uppercase;
+}
+
+.golden_text:hover {
+    color: #D1BEA8;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
