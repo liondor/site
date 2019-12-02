@@ -1,4 +1,4 @@
-.Carte {
+.carte {
     height: 20em;
     width: 15em;
     border-radius: 25px;
@@ -7,10 +7,9 @@
     display: grid;
     grid-template-rows: auto auto auto;
     grid-row-gap: 1px;
-    align-content: center;
+    align-content: space-around;
     box-sizing: border-box;
     box-shadow: 0 5px 15px #889fab;
-    font-family: sans-serif;
     --duration: .44s;
     --move-hover: -4px;
     -webkit-transform: translateY(var(--y));

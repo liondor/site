@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
-import Carte from "./Components/Carte";
 import HeaderHook from "./Components/Header/HeaderHook"
-import Bouton from './Components/Bouton'
+import Footer from "./Components/Footer/Footer";
+import Accueil from "./Components/Accueil"
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 const LIST_URL = 'http://localhost:8900/dsin/web/jsonapi/node/conseils?fields[node--conseils]=title,body,field_image&fields[file--file]=uri&include=field_image';
 var qs = require('qs');
@@ -37,34 +38,45 @@ class App extends Component {
 
         return (
             <div className="App">
-                <header>
-                    <HeaderHook/>
-                </header>
-                <div className="Conteneur">
+                <hr/>
+                <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet"/>
+                <Router>
+                    <header>
+                        <HeaderHook/>
+                    </header>
+                    <Switch>
+                        <Route exact path="/">
+                            <Accueil/>
+                        </Route>
+                        <Route path="/about">
+
+                        </Route>
+                        <Route path="/outils">
+
+                        </Route>
+                        <Route path="/projets">
+                        </Route>
+                    </Switch>
+                </Router>
+
                     {
-                        /*this.state.articles.map(item => <div><h1>{item.attributes.title}</h1>  <div dangerouslySetInnerHTML={{__html:item.attributes.body.value}}></div>
+                        /*
+                        this.state.articles.map(item => <div><h1>{item.attributes.title}</h1>  <div dangerouslySetInnerHTML={{__html:item.attributes.body.value}}></div>
                             <img src={item.relationships.field_image.data.id}/></div>)
                         */
                     }
-                    <Bouton/>
-                    <Carte/>
-                    <Carte/>
-                    <Carte/> <Carte/>
-                    <Carte/>
-                    <Carte/>
-
-                </div>
-
                 {/*     <DestinationList
-          data={this.state.data}
-        />
-        {this.state.articles !== null &&
-        this.state.articles !== undefined &&
-        this.state.articles.length > 0 ?
-          this.state.articles.map(item =><div> {item.attributes.title} </div> )
-          :
-          <div>No articles found.</div>
-        }*/}
+              data={this.state.data}
+            />
+            {this.state.articles !== null &&
+            this.state.articles !== undefined &&
+            this.state.articles.length > 0 ?
+              this.state.articles.map(item =><div> {item.attributes.title} </div> )
+              :
+              <div>No articles found.</div>
+            }*/}
+                <Footer/>
+
             </div>
         );
     }

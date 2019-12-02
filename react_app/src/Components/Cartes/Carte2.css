@@ -1,11 +1,9 @@
-.Carte {
-    background-color: #ffffff;
+.carte {
     display: grid;
     grid-template-rows: auto auto auto;
-    align-content: center;
+    align-content: space-around;
     align-self: center;
     justify-self: center;
-    font-family: sans-serif;
     overflow: hidden;
     cursor: pointer;
     --duration: .44s;
@@ -16,8 +14,8 @@
     transition: transform var(--duration) ease;
 }
 
-.Carte:hover {
-    background: #f9f9f9;
+.carte:hover {
+    background: #f5f5f5;
     /*transform: translateY(-5px);
     -webkit-transform: translateY var(-5px) ease;
      */
@@ -26,18 +24,18 @@
 
 }
 
-.Carte:hover img {
+.carte:hover img {
     filter: brightness(100%);
     -webkit-transition: .1s ease-in-out;
     transition: .1s ease-in-out;
 }
 
 
-.Carte h4 {
+.carte h4 {
     text-align: left;
 }
 
-.Carte img {
+.carte img {
     width: 100%;
     filter: brightness(85%);
 

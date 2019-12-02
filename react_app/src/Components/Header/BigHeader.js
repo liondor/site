@@ -1,32 +1,36 @@
 import React from 'react';
-import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
+import {Link} from "react-router-dom";
 import logo from '../Logo.png';
+import {MdSearch} from 'react-icons/md'
 
 export default class BigHeader extends React.Component {
 
     render() {
         return (
-            <Router>
-                <div className={"header"}>
+            <>
+                <div className={"header"} id={"header"}>
                     <div className={"logo_container"}>
                         <Link to="/"><img className={"logo"} src={logo}/></Link>
                     </div>
                     <div className={"searchbar_container"}>
                         <input type={"text"} placeholder={"Rechercher..."}/>
-                        <input type={"submit"}/>
+                        <label className={'headerSearchSubmitWrapper'}>
+                            <input type={"submit"} className={'headerSearchSubmit'}/>
+                            <MdSearch/>
+                        </label>
                     </div>
                     <div className={"menu_disposition"}>
-                        <div className={"grid"}>
-                            <div className={"golden_text menu"}>
-                                <Link className={"golden_text menu"} to="/Outils">
+                        <div className={"grid3 gridCenter  majuscule"}>
+                            <div style={{position: "relative"}}>
+                                <Link className={"menu goldenHover"} to="/Outils">
                                     Outils numériques & nos missions
                                 </Link>
                             </div>
-                            <div>
-                                <Link className={"golden_text menu"} to="/about">Qui sommes-nous</Link>
+                            <div style={{position: "relative"}}>
+                                <Link className={" menu goldenHover "} to="/about">Qui sommes-nous</Link>
                             </div>
-                            <div>
-                                <Link className={"golden_text menu"} to="/projets">Nos projets</Link>
+                            <div style={{position: "relative"}}>
+                                <Link className={" menu goldenHover"} to="/projets">Nos projets</Link>
                             </div>
                         </div>
                     </div>
@@ -40,22 +44,8 @@ export default class BigHeader extends React.Component {
               you have multiple routes, but you want only one
               of them to render at a time
             */}
-                <Switch>
-                    <Route exact path="/">
-                        <Home/>
-                    </Route>
-                    <Route path="/about">
-                        <About/>
-                    </Route>
-                    <Route path="/outils">
-                        <Outils/>
-                    </Route>
-                    <Route path="/projets">
-                        <Projets/>
-                    </Route>
-                </Switch>
 
-            </Router>
+            </>
 
         );
         // You can think of these components as "pages"
