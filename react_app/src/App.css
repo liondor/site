@@ -138,9 +138,9 @@ button {
 }
 
 footer {
+    position: absolute;
     padding: 20px 0;
     border-top: 1px solid var(--footer-color);
-
 }
 
 .footerLogo {
