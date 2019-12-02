@@ -9,7 +9,6 @@ function HeaderHook() {
     const whenNotFixed = "I am not a fixed header :(";
     const [headerText, setHeaderText] = useState(whenNotFixed);
     useEffect(() => {
-        alert("Just checking")
         const header = document.getElementById("header");
         const sticky = header.offsetTop;
         const scrollCallBack = window.addEventListener("scroll", () => {

@@ -152,7 +152,7 @@ footer {
 .goldenHover:before {
     content: "";
     position: absolute;
-    z-index: -1;
+    z-index: 1;
     left: 50%;
     right: 50%;
     bottom: -5px;
@@ -225,17 +225,17 @@ footer {
     background: var(--background-color);
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(5, minmax(14rem, 1fr));
+    grid-template-columns: repeat(4, minmax(14rem, 1fr)) minmax(4rem, 8rem);
     grid-template-rows: auto minmax(0, 1fr);
     justify-content: space-evenly;
     align-content: center;
-    grid-template-areas: "logo logo . . searchBar" ". . menu menu menu";
+    grid-template-areas: "logo logo . . searchBar" ". menu menu menu menu";
     transition: 0.5s ease-in-out;
 
 }
 
 .header > div {
-    padding: 1em;
+    padding: 1em 1em 1em 0;
 }
 
 .headerSearchSubmit {
@@ -280,6 +280,7 @@ input[type="text"] {
     border: none;
     padding: 1%;
     border-radius: 4px;
+    width: 100%;
 }
 
 .logo {
@@ -399,6 +400,7 @@ input[type="text"] {
 .searchbar_container {
     margin: auto;
     display: grid;
+    width: 100%;
     grid-template-columns: auto auto;
     align-content: center;
     grid-area: searchBar;
