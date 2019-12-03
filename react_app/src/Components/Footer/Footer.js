@@ -5,7 +5,6 @@ const Footer = () => {
     return (
         <>
             <footer className={"grid4"}>
-                <div className={"greyBackground"}></div>
 
                 <div>
                     <img className={"footerLogo"} src={logo}/>

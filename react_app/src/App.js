@@ -23,13 +23,14 @@ class App extends Component {
             console.log("Pas null")
             if (this.state.database !== undefined) {
                 console.log("Pas undefined")
-
-                var arrayOfConseils = this.state.database.data.map(item => item.attributes.body.value)
+                var arrayOfConseils = this.state.database.data.map(item => React.createElement('p', '', {text: item.attributes.body.value}))
                 var arrayOfTitle = this.state.database.data.map(item => item.attributes.title)
                 var arrayOfImage = this.state.database.included.map(item => item.attributes.uri.url)
-                var arrayOfCards;
-            }
+                var arrayOfCards = this.state.database;
 
+                console.log(arrayOfConseils)
+
+            }
 
         } else {
 

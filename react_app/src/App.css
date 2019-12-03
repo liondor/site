@@ -15,6 +15,9 @@ a {
     color: #282c34;
 }
 
+#accueil {
+    width: 100%;
+}
 .accueilOutils {
     margin-top: 3vh;
     margin-bottom: 3vh;
@@ -99,7 +102,6 @@ button {
     grid-row-gap: 5vh;
     justify-items: center;
     align-content: start;
-    overflow: auto;
 }
 
 .effect {
@@ -137,10 +139,13 @@ button {
     text-indent: 0px;
 }
 
+.fillScreen {
+    width: 100%;
+}
 footer {
-    position: absolute;
     padding: 20px 0;
     border-top: 1px solid var(--footer-color);
+    width: 100%;
 }
 
 .footerLogo {
@@ -183,7 +188,7 @@ footer {
 }
 
 .greyBackground {
-    background-color: #E8E9EB;
+    background-color: var(--secondary-color);
     min-height: 100%;
     width: calc(100% + 6em);
     position: absolute;
@@ -204,8 +209,6 @@ footer {
     display: grid;
     grid-template-columns: minmax(14rem, 1fr) repeat(auto-fit, minmax(5rem, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(14rem, 1fr));
-    grid-column-gap: 3rem;
-    grid-row-gap: 1rem;
     justify-content: center;
 }
 
@@ -221,6 +224,9 @@ footer {
     justify-items: left;
 }
 
+header {
+    transition: 2s;
+}
 .header {
     background: var(--background-color);
     width: 100%;
@@ -229,7 +235,7 @@ footer {
     grid-template-rows: auto minmax(0, 1fr);
     justify-content: space-evenly;
     align-content: center;
-    grid-template-areas: "logo logo . . searchBar" ". menu menu menu menu";
+    grid-template-areas: "logo logo . searchBar searchBar" ". menu menu menu menu";
     transition: 0.5s ease-in-out;
 
 }
@@ -362,14 +368,19 @@ input[type="text"] {
 
 }
 
+.offset {
+    height: 0;
+}
+
+.offsetSticky {
+    height: 15em;
+}
 .outil {
-    border: 3px solid #0000000d;
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: auto;
     justify-items: center;
     align-content: center;
-    transition: 0.5s;
 }
 
 .outilImageContainer {
@@ -377,13 +388,12 @@ input[type="text"] {
     max-width: 8em;
     min-width: 1rem;
     justify-content: center;
-    z-index: 1;
 }
 
-.outil:hover .outilImageTitre {
-    background: #ff0057;
+/*.outil:hover .outilImageTitre {
+    background: var(--main-color);
     transform: translateY(0);
-}
+}*/
 
 .outilImage {
     width: 100%;
@@ -393,8 +403,11 @@ input[type="text"] {
     width: 100%;
     height: 100%;
     background: #333;
-    transform: translateY(50%);
+    /*  transform: translateY(50%);*/
     position: relative;
+    display: grid;
+    justify-items: center;
+    transition: 0.5s;
 }
 
 .searchbar_container {
@@ -418,7 +431,6 @@ input[type="text"] {
     width: 100%;
     grid-template-areas: "logo menu menu menu searchBar";
     align-content: center;
-
     width: 100%;
 }
 
@@ -428,12 +440,37 @@ input[type="text"] {
     color: white;
 }
 
+.titreSection {
+    font-weight: 400;
+    font-size: 1.625rem;
+    line-height: 1.875rem;
+    text-align: left;
+}
+
+.titreSection:before {
+    content: "";
+    width: 50px;
+    height: 12px;
+    display: block;
+    background-color: var(--fourth-color);
+    position: relative;
+    margin-bottom: 13px;
+}
+
+.whiteText {
+    color: white;
+}
 ul {
     list-style: none;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
+@media (max-width: 900px) {
+    .header {
+        grid-template-areas: ". logo .  searchBar ." ". menu menu menu .";
+    }
+}
 @media (max-width: 768px) {
     .header {
         grid-template-columns: minmax(30px, 1fr) minmax(16rem, 1fr) minmax(1px, 1fr);
@@ -442,6 +479,10 @@ ul {
         height: 100%;
         align-content: center;
         grid-template-areas: "menu logo searchBar";
+    }
+
+    .header > div {
+        padding: 0;
     }
 
 
@@ -453,13 +494,11 @@ ul {
         align-self: center;
         justify-self: center;
         border-radius: 30%;
-
-
     }
 
     .menu_disposition > svg {
         font-size: x-large;
-        padding-: 1em;
+        padding: 0.5em;
     }
 
     .menu_disposition:hover {
@@ -471,21 +510,29 @@ ul {
         width: fit-content;
     }
 
-    @media (max-width: 580px) {
-        .header {
-            justify-content: space-around;
-        }
 
-        /*  .menu_disposition{
-              justify-self: left;
-          }
-          .searchbar_container{
-              margin:unset;
-              justify-self: right;
-              align-self: center;
-          }*/
+}
 
-
+@media (max-width: 580px) {
+    .header {
+        justify-items: center;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
+    body {
+        padding: 1em;
+    }
+
+    .greyBackground {
+        width: calc(100% + 4em);
+    }
+
+    /*  .menu_disposition{
+          justify-self: left;
+      }
+      .searchbar_container{
+          margin:unset;
+          justify-self: right;
+          align-self: center;
+      }*/
 }

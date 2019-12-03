@@ -5,9 +5,8 @@ import Outil from "./Outils";
 
 const Accueil = () => {
     return (
-        <>
-            <div className="conteneur">
-
+        <div id={"accueil"}>
+            <div className="conteneur fillScreen">
                 <Carte/>
                 <Carte/>
                 <Carte/>
@@ -16,10 +15,10 @@ const Accueil = () => {
                 <Carte/>
             </div>
             <Bouton marge={"30px"} contenu={"Plus d'actus"}/>
-            <div className={"accueilOutilsWrapper"}>
+            <div className={"accueilOutilsWrapper whiteText"}>
                 <div className={"greyBackground"}/>
                 <div className={"accueilOutilsSubWrapper"}>
-                    <h2>Outils numériques populaires </h2>
+                    <h2 className={"titreSection "}>Outils numériques populaires </h2>
                     <div className={"accueilOutils conteneur"}>
                         <Outil/>
                         <Outil/>
@@ -30,7 +29,7 @@ const Accueil = () => {
                     <Bouton marge={"30px"} contenu={"Plus d'outils"}/>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 export default Accueil;

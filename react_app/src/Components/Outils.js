@@ -3,7 +3,7 @@ import user from './IMG/user.svg'
 
 const Outil = () => {
     return (
-        <a className={"conteneur outil"} href={"/"}>
+        <a className={"outil whiteText"} href={"/"}>
             <div className={"outilImageTitre"}>
                 <div className={"outilImageContainer"}>
                     <img className={"outilImage"} src={user}/>
