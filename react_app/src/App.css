@@ -441,22 +441,25 @@ ul {
         grid-gap: 3px;
         height: 100%;
         align-content: center;
+        grid-template-areas: "menu logo searchBar";
     }
 
-    .logo_container {
-        grid-column: 2;
-    }
 
     .menu {
         font-size: 3vh;
     }
 
     .menu_disposition {
-        grid-column: 1;
         align-self: center;
         justify-self: center;
         border-radius: 30%;
 
+
+    }
+
+    .menu_disposition > svg {
+        font-size: x-large;
+        padding-: 1em;
     }
 
     .menu_disposition:hover {
