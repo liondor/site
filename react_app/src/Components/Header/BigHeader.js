@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import logo from '../Logo.png';
-import {MdSearch} from 'react-icons/md'
+import SearchBar from "./SearchBar";
 
 export default class BigHeader extends React.Component {
 
@@ -13,16 +13,12 @@ export default class BigHeader extends React.Component {
                         <Link to="/"><img className={"logo"} src={logo}/></Link>
                     </div>
                     <div className={"searchbar_container"}>
-                        <input type={"text"} placeholder={"Rechercher..."}/>
-                        <label className={'headerSearchSubmitWrapper'}>
-                            <input type={"submit"} className={'headerSearchSubmit'}/>
-                            <MdSearch/>
-                        </label>
+                        <SearchBar/>
                     </div>
                     <div className={"menu_disposition"}>
                         <div className={"grid3 gridCenter  majuscule"}>
                             <div style={{position: "relative"}}>
-                                <Link className={"menu goldenHover"} to="/Outils">
+                                <Link className={"menu goldenHover"} to="/outilsMissions">
                                     Outils numériques & nos missions
                                 </Link>
                             </div>
@@ -40,41 +36,6 @@ export default class BigHeader extends React.Component {
             </>
 
         );
-        // You can think of these components as "pages"
-// in your app.
-
-        function Home() {
-            return (
-                <div>
-                    <h2>Home</h2>
-                </div>
-            );
-        }
-
-        function About() {
-            return (
-                <div>
-                    <h2>About</h2>
-                </div>
-            );
-        }
-
-        function Outils() {
-            return (
-                <div>
-                    <h2>Outils numériques & nos missions</h2>
-                </div>
-            );
-        }
-
-        function Projets() {
-            return (
-                <div>
-                    <h2>Nos projets</h2>
-                </div>
-            );
-        }
-
     }
 
 }

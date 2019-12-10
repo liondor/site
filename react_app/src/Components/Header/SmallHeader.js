@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
 import logo from '../Logo.png';
-import {MdMenu, MdSearch} from 'react-icons/md'
+import {MdMenu} from 'react-icons/md'
 import SideMenu from "./SideMenu";
+import SearchBar from "./SearchBar";
 
 
 let menu;
@@ -10,7 +11,7 @@ menu = (toggle) => {
     return (
         <>
             <div className={"goldenText menu"}>
-                <Link className={"goldenText menu"} onClick={toggle} to="/Outils">
+                <Link className={"goldenText menu"} onClick={toggle} to="/outilsMissions">
                     Outils numériques & nos missions
                 </Link>
             </div>
@@ -38,13 +39,11 @@ const SmallHeader = () => {
                     </Link>
                 </div>
                 <div className={"searchbar_container"}>
-                    <MdSearch/>
+                    <SearchBar/>
                 </div>
             </div>
             <SideMenu show={hasClicked} toggle={openModal} message={""} content={menu}/>
-
         </>
-
     );
     // You can think of these components as "pages"
 // in your app.

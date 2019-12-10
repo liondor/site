@@ -36,9 +36,9 @@ const Footer = () => {
                 </div>
                 <div>
                     <h4 className={"goldenText"}> Nos partenaires </h4>
-                    <ul>
+                    <ul className={"lessImportantText"}>
                         <li>
-                            <a className={"lessImportantText"}> Lien exemple</a>
+                            <a> Lien exemple</a>
                         </li>
                         <li>
                             <a className={"lessImportantText"}> Lien exemple</a>

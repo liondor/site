@@ -4,6 +4,12 @@ import HeaderHook from "./Components/Header/HeaderHook"
 import Footer from "./Components/Footer/Footer";
 import Accueil from "./Components/Accueil"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import TwoOptions from "./Components/TwoOptions";
+import ListeOutils from "./Components/ListeOutils";
+import OutilPresentation from "./Components/OutilPresentation";
+import Contact from "./Components/Contact";
+import GridTwo from "./Components/GridTwo";
+import Projet from "./Components/Projet";
 
 const LIST_URL = 'http://localhost:8900/dsin/web/jsonapi/node/conseils?fields[node--conseils]=title,body,field_image&fields[file--file]=uri&include=field_image';
 var qs = require('qs');
@@ -20,15 +26,15 @@ class App extends Component {
 
     render() {
         if (this.state.database !== null) {
-            console.log("Pas null")
+            //        console.log("Pas null")
             if (this.state.database !== undefined) {
-                console.log("Pas undefined")
+//                console.log("Pas undefined")
                 var arrayOfConseils = this.state.database.data.map(item => React.createElement('p', '', {text: item.attributes.body.value}))
                 var arrayOfTitle = this.state.database.data.map(item => item.attributes.title)
                 var arrayOfImage = this.state.database.included.map(item => item.attributes.uri.url)
                 var arrayOfCards = this.state.database;
 
-                console.log(arrayOfConseils)
+//                console.log(arrayOfConseils)
 
             }
 
@@ -39,7 +45,7 @@ class App extends Component {
 
         return (
             <div className="App">
-                <hr/>
+
                 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet"/>
                 <Router>
                     <header>
@@ -50,12 +56,31 @@ class App extends Component {
                             <Accueil/>
                         </Route>
                         <Route path="/about">
-
+                            <h1 className={"titreSection"}> Présentation des pôles </h1>
+                            <GridTwo/>
                         </Route>
                         <Route path="/outils">
+                            <h1 className={"titreSection"}>Outils numériques et prestations offertes par
+                                l'université</h1>
+                            <ListeOutils/>
+                        </Route>
+                        <Route path="/exempleOutil">
 
+                            <OutilPresentation/>
+                        </Route>
+                        <Route path="/missions">
+                            <h1 className={"titreSection"}> Nos missions</h1>
+                        </Route>
+                        <Route path="/outilsMissions">
+                            <TwoOptions/>
+                        </Route>
+                        <Route path="/contact">
+                            <h1 className={"titreSection"}>Contactez-nous !</h1>
+                            <Contact/>
                         </Route>
                         <Route path="/projets">
+                            <h1 className={"titreSection"}>Nos projets</h1>
+                            <Projet/>
                         </Route>
                     </Switch>
                 </Router>
@@ -101,9 +126,9 @@ class App extends Component {
     }
 
     componentDidUpdate() {
-        console.log(this.state.token)
-        console.log(this.state.articles)
-        console.log(this.state.database)
+        /*   console.log(this.state.token)
+           console.log(this.state.articles)
+           console.log(this.state.database)*/
     }
 
     componentDidMount() {

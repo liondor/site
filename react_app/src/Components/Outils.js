@@ -1,24 +1,30 @@
 import React from 'react'
-import user from './IMG/user.svg'
+import {IconContext} from "react-icons";
+import {AiOutlineUser} from 'react-icons/ai'
+import {Link} from "react-router-dom";
+
 
 const Outil = () => {
     return (
-        <a className={"outil whiteText"} href={"/"}>
+        <Link className={"outil whiteText"} to={"/exempleOutil"}>
             <div className={"outilImageTitre"}>
-                <div className={"outilImageContainer"}>
-                    <img className={"outilImage"} src={user}/>
+                <div className={"outilImageContainer whiteText"}>
 
+                    <IconContext.Provider value={{className: "outilIcone"}}>
+                        <div>
+                            <AiOutlineUser/>
+                        </div>
+                    </IconContext.Provider>
                 </div>
                 <div className={"outilTitre"}>
-                    <h3 className={"bold"}> Compte utilisateur</h3>
+                    <h3 className={"bold majuscule"}> Compte utilisateur</h3>
                 </div>
             </div>
             <div className={"outilDescription lessImportantText"}>
-                <p>Lorem ipsum dolor sit amet, sapien etiam.Lorem ipsum dolor sit amet, sapien etiam.Lorem ipsum
-                    dolor sit amet, sapien etiam.</p>
+                <p>Accès aux différents services numériques</p>
             </div>
 
-        </a>
+        </Link>
     );
 }
 
