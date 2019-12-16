@@ -273,6 +273,7 @@ footer h4, footer h6 {
 
 #grid2 {
     margin-top: 5vw;
+    grid-row-gap: 5vw;
 }
 
 #grid2 h2 {
@@ -362,6 +363,9 @@ header hr {
     margin: 0
 }
 
+.hide {
+    visibility: hidden;
+}
 html {
     height: 100%;
 }
@@ -393,6 +397,21 @@ input[type="text"] {
     text-transform: uppercase;
 }
 
+#mapBackground {
+    z-index: 1;
+    user-select: none
+}
+
+#testMap {
+    width: 500px;
+    height: 500px;
+    background-color: red;
+    position: relative;
+}
+
+.mapShape {
+    background-color: red;
+}
 .menu {
     font-family: 'Lato';
     font-weight: 900;
@@ -695,6 +714,10 @@ ul {
     .searchbar_container {
         align-self: start;
         width: fit-content;
+    }
+
+    .hide {
+        visibility: hidden;
     }
 
 
