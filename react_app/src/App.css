@@ -66,9 +66,13 @@ a {
 }
 
 #annuaire {
+
+}
+
+#annuaireBackground {
+    padding: 0 4vw 2vw;
     display: grid;
     grid-template-rows: repeat(2, minmax(5vh, 15vh));
-
 }
 .arrowIcon {
     display: inline-flex;
@@ -220,7 +224,9 @@ footer h4, footer h6 {
     min-width: 10rem;
 }
 
-
+#footerLogoContact {
+    text-align: center;
+}
 .goldenHover:before {
     content: "";
     position: absolute;
@@ -364,7 +370,6 @@ header hr {
 }
 
 .hide {
-    visibility: hidden;
 }
 html {
     height: 100%;
@@ -403,15 +408,13 @@ input[type="text"] {
 }
 
 #testMap {
-    width: 500px;
-    height: 500px;
-    background-color: red;
+    margin-top: 5vw;
+    border: solid 5px var(--secondary-color);
+    width: fit-content;
     position: relative;
 }
 
-.mapShape {
-    background-color: red;
-}
+
 .menu {
     font-family: 'Lato';
     font-weight: 900;
@@ -560,7 +563,6 @@ input[type="text"] {
     top: 0;
     left: 0;
     position: absolute;
-    background: url(logo.svg) no-repeat;
 
 }
 
@@ -599,7 +601,7 @@ input[type="text"] {
 
 .sticky {
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     top: 0;
     left: 0;
     width: 100%;
@@ -623,7 +625,7 @@ input[type="text"] {
     text-align: left;
 }
 
-.titreSection:before {
+.titreSection:after {
     content: "";
     width: 50px;
     height: 12px;
@@ -631,6 +633,7 @@ input[type="text"] {
     background-color: var(--fourth-color);
     position: relative;
     margin-bottom: 13px;
+
 }
 
 .twoOptions {
@@ -672,6 +675,14 @@ ul {
 @media (max-width: 768px) {
     .accueilPhoto {
         width: 33%;
+    }
+
+    #contact {
+        grid-template-columns: repeat(auto-fit, minmax(66vw, 90vw));
+    }
+
+    #formulaire {
+        width: 100%;
     }
     .header {
         grid-template-columns: minmax(30px, 1fr) minmax(16rem, 1fr) minmax(1px, 1fr);
@@ -717,7 +728,6 @@ ul {
     }
 
     .hide {
-        visibility: hidden;
     }
 
 

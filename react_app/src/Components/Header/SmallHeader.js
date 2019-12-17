@@ -21,6 +21,10 @@ menu = (toggle) => {
             <div>
                 <Link className={"goldenText menu"} onClick={toggle} to="/projets">Nos projets</Link>
             </div>
+
+            <div className={"searchbar_container"}>
+                <SearchBar/>
+            </div>
         </>)
 };
 
@@ -37,9 +41,6 @@ const SmallHeader = () => {
                     <Link to="/">
                         <img className={"logo"} src={logo}/>
                     </Link>
-                </div>
-                <div className={"searchbar_container"}>
-                    <SearchBar/>
                 </div>
             </div>
             <SideMenu show={hasClicked} toggle={openModal} message={""} content={menu}/>

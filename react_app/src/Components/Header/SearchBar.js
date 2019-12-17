@@ -17,19 +17,20 @@ function SearchBar(props) {
         ignoreFirstRender = false;
     }
     useEffect(() => {
+        /*
         if (open && !ignoreFirstRender) {
             document.getElementById("searchInput").classList.remove("hide")
             alert("We are in useEffect")
         } else if (!open) {
             document.getElementById("searchInput").classList.add("hide")
-        }
+        }*/
     }, [open]);
     return (
         <div className={"searchbar_container"}>
             <input id={'searchInput'} className={"hide"} type={"text"} placeholder={"Rechercher..."}/>
             <label className={'headerSearchSubmitWrapper'}>
                 <input type={"submit"} className={'headerSearchSubmit'}/>
-                <Bouton contenu={<MdSearch onClick={() => handleOpen}/>}/>
+                <Bouton type={'main'} contenu={<MdSearch onClick={() => handleOpen}/>}/>
             </label>
         </div>
     );

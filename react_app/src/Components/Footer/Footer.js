@@ -1,13 +1,15 @@
 import React from 'react'
 import logo from '../Logo.png'
+import {Link} from "react-router-dom";
 
 const Footer = () => {
     return (
         <>
             <footer className={"grid4"}>
 
-                <div>
+                <div id={"footerLogoContact"}>
                     <img className={"footerLogo"} src={logo}/>
+                    <Link to={"contact"}> Contactez-nous </Link>
                 </div>
                 <div>
                     <div><h6 className={"goldenText"}> Guadeloupe</h6>

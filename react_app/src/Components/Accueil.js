@@ -3,12 +3,10 @@ import Carte from "./Cartes/Carte";
 import Bouton from "./Bouton";
 import Outil from "./Outils";
 import PhotoText from "./PhotoText";
-import Map from "./Map"
 
 const Accueil = () => {
     return (
         <div id={"accueil"}>
-            <Map/>
             <h2 className={"titreSection"}> Conseils</h2>
             <div className="conteneur fillScreen">
                 <Carte/>

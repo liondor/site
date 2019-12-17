@@ -4,6 +4,7 @@ import {FaArrowRight} from 'react-icons/fa'
 
 const Bouton = (props) => {
     var classeBouton = "";
+
     if (props.arrow) {
         classeBouton += " effect effect-1 "
     }
@@ -16,6 +17,7 @@ const Bouton = (props) => {
             {props.contenu}
             <div className={"arrowIcon"}><FaArrowRight/></div>
         </button>);
+
 
 }
 export default Bouton

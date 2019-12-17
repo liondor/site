@@ -10,6 +10,7 @@ import OutilPresentation from "./Components/OutilPresentation";
 import Contact from "./Components/Contact";
 import GridTwo from "./Components/GridTwo";
 import Projet from "./Components/Projet";
+import ScrollToTop from "./Components/ScrollToTop";
 
 const LIST_URL = 'http://localhost:8900/dsin/web/jsonapi/node/conseils?fields[node--conseils]=title,body,field_image&fields[file--file]=uri&include=field_image';
 var qs = require('qs');
@@ -46,51 +47,53 @@ class App extends Component {
         return (
             <div className="App">
 
-                <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet"/>
                 <Router>
-                    <header>
-                        <HeaderHook/>
-                    </header>
-                    <Switch>
-                        <Route exact path="/">
-                            <Accueil/>
-                        </Route>
-                        <Route path="/about">
-                            <h1 className={"titreSection"}> Présentation des pôles </h1>
-                            <GridTwo/>
-                        </Route>
-                        <Route path="/outils">
-                            <h1 className={"titreSection"}>Outils numériques et prestations offertes par
-                                l'université</h1>
-                            <ListeOutils/>
-                        </Route>
-                        <Route path="/exempleOutil">
+                    <ScrollToTop>
+                        <header>
+                            <HeaderHook/>
+                        </header>
+                        <Switch>
+                            <Route exact path="/">
+                                <Accueil/>
+                            </Route>
+                            <Route path="/about">
+                                <h1 className={"titreSection"}> Présentation des pôles </h1>
+                                <GridTwo/>
+                            </Route>
+                            <Route path="/outils">
+                                <h1 className={"titreSection"}>Outils numériques et prestations offertes par
+                                    l'université</h1>
+                                <ListeOutils/>
+                            </Route>
+                            <Route path="/exempleOutil">
 
-                            <OutilPresentation/>
-                        </Route>
-                        <Route path="/missions">
-                            <h1 className={"titreSection"}> Nos missions</h1>
-                        </Route>
-                        <Route path="/outilsMissions">
-                            <TwoOptions/>
-                        </Route>
-                        <Route path="/contact">
-                            <h1 className={"titreSection"}>Contactez-nous !</h1>
-                            <Contact/>
-                        </Route>
-                        <Route path="/projets">
-                            <h1 className={"titreSection"}>Nos projets</h1>
-                            <Projet/>
-                        </Route>
-                    </Switch>
+                                <OutilPresentation/>
+                            </Route>
+                            <Route path="/missions">
+                                <h1 className={"titreSection"}> Nos missions</h1>
+                            </Route>
+                            <Route path="/outilsMissions">
+                                <TwoOptions/>
+                            </Route>
+                            <Route path="/contact">
+                                <h1 className={"titreSection"}>Contactez-nous !</h1>
+                                <Contact/>
+                            </Route>
+                            <Route path="/projets">
+                                <h1 className={"titreSection"}>Nos projets</h1>
+                                <Projet/>
+                            </Route>
+                        </Switch>
+                        <Footer/>
+                    </ScrollToTop>
                 </Router>
 
-                    {
-                        /*
-                        this.state.articles.map(item => <div><h1>{item.attributes.title}</h1>  <div dangerouslySetInnerHTML={{__html:item.attributes.body.value}}></div>
-                            <img src={item.relationships.field_image.data.id}/></div>)
-                        */
-                    }
+                {
+                    /*
+                    this.state.articles.map(item => <div><h1>{item.attributes.title}</h1>  <div dangerouslySetInnerHTML={{__html:item.attributes.body.value}}></div>
+                        <img src={item.relationships.field_image.data.id}/></div>)
+                    */
+                }
                 {/*     <DestinationList
               data={this.state.data}
             />
@@ -101,7 +104,6 @@ class App extends Component {
               :
               <div>No articles found.</div>
             }*/}
-                <Footer/>
 
             </div>
         );

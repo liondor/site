@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Dialogue from "./Dialogue";
+import {Paper} from "@material-ui/core";
 
 
 function Annuaire(props) {
@@ -18,15 +19,17 @@ function Annuaire(props) {
     return (
         <>
             <div id={"annuaire"}>
-                <h2> Contactez-nous !</h2>
-                <div id={"annuaireSelectorWrapper"}>
-                    <select id={"annuaireSelect"} onChange={e => changePole(e.target.value)} value={selection}>
-                        <option value={""}>Choissisez un pôle à contacter....</option>
-                        <option value={"PIC"}>Pôle Infrastructure Centrale</option>
-                        <option value={"PIP"}>Pôle Infrastructure de Proximité</option>
-                        <option value={"PAM"}>Pôle Application Métier</option>
-                    </select>
-                </div>
+                <Paper id={"annuaireBackground"}>
+                    <h2> Contactez-nous !</h2>
+                    <div id={"annuaireSelectorWrapper"}>
+                        <select id={"annuaireSelect"} onChange={e => changePole(e.target.value)} value={selection}>
+                            <option value={""}>Choissisez un pôle à contacter....</option>
+                            <option value={"PIC"}>Pôle Infrastructure Centrale</option>
+                            <option value={"PIP"}>Pôle Infrastructure de Proximité</option>
+                            <option value={"PAM"}>Pôle Application Métier</option>
+                        </select>
+                    </div>
+                </Paper>
             </div>
             <Dialogue open={open} handleClose={handleClose} selection={selection}/>
         </>
