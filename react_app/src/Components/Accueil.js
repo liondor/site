@@ -1,10 +1,10 @@
 import React from 'react'
 import Carte from "./Cartes/Carte";
 import Bouton from "./Bouton";
-import Outil from "./Outils";
 import PhotoText from "./PhotoText";
+import ListeOutils from "./ListeOutils";
 
-const Accueil = () => {
+const Accueil = (props) => {
     return (
         <div id={"accueil"}>
             <h2 className={"titreSection"}> Conseils</h2>
@@ -25,11 +25,7 @@ const Accueil = () => {
                 <div className={"accueilOutilsSubWrapper"}>
                     <h2 className={"titreSection "}>Outils numériques populaires </h2>
                     <div className={"accueilOutils conteneur"}>
-                        <Outil/>
-                        <Outil/>
-                        <Outil/>
-                        <Outil/>
-                        <Outil/>
+                        <ListeOutils token={props.token} limit={3}/>
                     </div>
                     <Bouton marge={"30px"} contenu={"Plus d'outils"} type={"main"} arrow={true}/>
                 </div>

@@ -26,7 +26,6 @@ class App extends Component {
     };
 
     render() {
-
         return (
             <div className="App">
 
@@ -37,7 +36,7 @@ class App extends Component {
                         </header>
                         <Switch>
                             <Route exact path="/">
-                                <Accueil/>
+                                <Accueil token={this.state.token}/>
                             </Route>
                             <Route path="/about">
                                 <h1 className={"titreSection"}> Présentation des pôles </h1>
@@ -46,7 +45,7 @@ class App extends Component {
                             <Route path="/outils">
                                 <h1 className={"titreSection"}>Outils numériques et prestations offertes par
                                     l'université</h1>
-                                <ListeOutils token={this.state.token} height={100}/>
+                                <ListeOutils token={this.state.token}/>
                             </Route>
                             <Route path="/exempleOutil">
                                 <OutilPresentation/>

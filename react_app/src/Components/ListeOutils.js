@@ -4,10 +4,14 @@ import Outil from "./Outils";
 function ListeOutils(props) {
     var [categories, setCatergories] = useState(null)
     var [formattedCategories, setFormattedCategories] = useState(null)
-
+    var pager = 'page[limit]=' + props.limit;
     useEffect(() => {
-
-        fetch('http://localhost:8900/dsin/web/jsonapi/node/categorie_outils?include=field_image&fields[node--categorie_outils]=title,field_description,field_description.value,field_image', {
+        if (props.limit !== null && props.limit !== undefined) {
+            pager = '&page[limit]=' + props.limit;
+        } else {
+            pager = ""
+        }
+        fetch('http://localhost:8900/dsin/web/jsonapi/node/categorie_outils?include=field_image&fields[node--categorie_outils]=title,field_description,field_description.value,field_image' + pager, {
             method: 'GET',
             headers: {
                 'Autohrization': 'Beaver' + props.token.access_token,
