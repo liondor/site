@@ -22,9 +22,12 @@ function ListeOutils(props) {
         ).catch(function (error) {
             console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
         })
-        if (categories !== null && categories !== undefined)
-            setFormattedCategories(pairData())
-        console.log(formattedCategories);
+        if (categories !== null && categories !== undefined) {
+            let test = pairData()
+            setFormattedCategories(test)
+            let test2 = formattedCategories
+            console.log(test2);
+        }
     }, [props.token])
 
     function pairData() {
@@ -63,7 +66,8 @@ function ListeOutils(props) {
         let result = formattedCategories
         if (result !== null)
             return result.map(item => (
-                <Outil titre={item.titre} description={item.description} urlImage={item.urlImage}>Test</Outil>))
+                <Outil id={item.titre + item.urlImage} titre={item.titre} description={item.description}
+                       urlImage={item.urlImage}>Test</Outil>))
         else
             return <p>Loading...</p>
     }
