@@ -30,8 +30,9 @@ function Dialogue(props) {
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
+                maxWidth={"xl"}
             >
-                <DialogTitle id="alert-dialog-title">{"Pôle Infrastructure Centrale"}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">{props.selection}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                         <h3> Martinique </h3>

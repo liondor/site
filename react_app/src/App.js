@@ -63,10 +63,9 @@ class App extends Component {
                             <Route path="/outils">
                                 <h1 className={"titreSection"}>Outils numériques et prestations offertes par
                                     l'université</h1>
-                                <ListeOutils/>
+                                <ListeOutils token={this.state.token} height={100}/>
                             </Route>
                             <Route path="/exempleOutil">
-
                                 <OutilPresentation/>
                             </Route>
                             <Route path="/missions">
@@ -109,7 +108,7 @@ class App extends Component {
         );
     }
 
-    /*
+
 
         loadDestinations() {
             // Fetch Destinations.
@@ -122,7 +121,7 @@ class App extends Component {
         }
 
         updateData(responseData) {
-            this.setState({database: responseData}, () => console.log(this.state));
+            this.setState({database: responseData});
         }
 
         componentWillMount() {
@@ -130,9 +129,9 @@ class App extends Component {
         }
 
         componentDidUpdate() {
-            /!*   console.log(this.state.token)
-               console.log(this.state.articles)
-               console.log(this.state.database)*!/
+            /*console.log(this.state.token)
+            console.log(this.state.articles)
+            console.log(this.state.database)*/
         }
 
         componentDidMount() {
@@ -161,7 +160,7 @@ class App extends Component {
                     'Autohrization': 'Beaver' + this.state.token.access_token,
                     'Accept': 'application/vnd.api+json',
                 },
-            }).then((response) => response.json()).then((data) => this.setState({articles: data.data,}, () => console.log(this.state)
+            }).then((response) => response.json()).then((data) => this.setState({articles: data.data,}
             ))
         }
 
@@ -172,7 +171,7 @@ class App extends Component {
             }
             console.log(this.state.articles)
         }
-    */
+
 
 }
 

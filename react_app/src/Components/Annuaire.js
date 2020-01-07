@@ -24,9 +24,9 @@ function Annuaire(props) {
                     <div id={"annuaireSelectorWrapper"}>
                         <select id={"annuaireSelect"} onChange={e => changePole(e.target.value)} value={selection}>
                             <option value={""}>Choissisez un pôle à contacter....</option>
-                            <option value={"PIC"}>Pôle Infrastructure Centrale</option>
-                            <option value={"PIP"}>Pôle Infrastructure de Proximité</option>
-                            <option value={"PAM"}>Pôle Application Métier</option>
+                            <option value={"Pôle Infrastructure Centrale"}>Pôle Infrastructure Centrale</option>
+                            <option value={"Pôle Infrastructure de Proximité"}>Pôle Infrastructure de Proximité</option>
+                            <option value={"Pôle Application Métier"}>Pôle Application Métier</option>
                         </select>
                     </div>
                 </Paper>
