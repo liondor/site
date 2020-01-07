@@ -1,13 +1,13 @@
 import React from 'react'
-import {IconContext} from "react-icons";
-import {AiOutlineUser} from 'react-icons/ai'
 import {Link} from "react-router-dom";
 
 
-const Outil = () => {
+const Outil = (props) => {
     return (
         <Link className={"outil whiteText"} to={"/exempleOutil"}>
             <div className={"outilImageTitre"}>
+                <img src={"http://localhost:8900" + props.urlImage}/>
+                {/*
                 <div className={"outilImageContainer whiteText"}>
 
                     <IconContext.Provider value={{className: "outilIcone"}}>
@@ -15,13 +15,15 @@ const Outil = () => {
                             <AiOutlineUser/>
                         </div>
                     </IconContext.Provider>
+
                 </div>
+                */}
                 <div className={"outilTitre"}>
-                    <h3 className={"bold majuscule"}> Compte utilisateur</h3>
+                    <h3 className={"bold majuscule"}> {props.titre}</h3>
                 </div>
             </div>
             <div className={"outilDescription lessImportantText"}>
-                <p>Accès aux différents services numériques</p>
+                <p>{props.description}</p>
             </div>
 
         </Link>

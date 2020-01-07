@@ -504,7 +504,8 @@ input[type="text"] {
 .outil {
     display: grid;
     grid-template-rows: 2fr 1fr;
-    grid-template-columns: auto;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    width: 75%;
     justify-items: center;
     align-content: center;
     background: #333;

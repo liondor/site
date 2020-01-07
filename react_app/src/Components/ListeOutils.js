@@ -56,20 +56,17 @@ function ListeOutils(props) {
     }
 
     function renderOutils() {
-
+        let result = formattedCategories
+        if (result !== null)
+            return result.map(item => (
+                <Outil titre={item.titre} description={item.description} urlImage={item.urlImage}>Test</Outil>))
+        else
+            return <p>Loading...</p>
     }
-
     return (
         <div id={"#listeOutils"} className={"conteneur"}>
+            {renderOutils()}
 
-            <Outil/>
-            <Outil/>
-            <Outil/>
-            <Outil/>
-            <Outil/>
-            <Outil/>
-            <Outil/>
-            <Outil/>
         </div>
     );
 }
