@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import ImageMapper from 'react-image-mapper';
 import Guadeloupe from './IMG/Guadeloupe.png'
 import Shoelcher from './IMG/schoelcher.jpg'
 import Select from '@material-ui/core/Select';
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
+import _ from 'lodash'
 
 function Map() {
     const initialPosShoelcher = [{
@@ -60,13 +61,13 @@ function Map() {
     const WIDTH_CARTE_FOUILLOLE = 1274;
 
 
-    var [closestInformaticien, setCloserInformaticien] = useState([9999, 9999])
+    const [closestInformaticien, setCloserInformaticien] = useState([9999, 9999])
     const [initialPos, setInitialPos] = useState(initialPosShoelcher)
-    var [informaticiens, setInformaticiens] = useState(initialPos)
-    var [carte, setCarte] = useState(Shoelcher)
-    //var [width, setWidth] = useState(window.innerWidth * .8)
-    var [initialWidth, setInitialWidth] = useState(WIDTH_CARTE_SHOELCHER)
-    const width = initialWidth;
+    const [informaticiens, setInformaticiens] = useState(initialPos)
+    const [carte, setCarte] = useState(Shoelcher)
+    const [width, setWidth] = useState(window.innerWidth * .6)
+    const [initialWidth, setInitialWidth] = useState(WIDTH_CARTE_SHOELCHER)
+    //const width = 500;
     const ratio = width / initialWidth
 
     function test() {
@@ -84,30 +85,42 @@ function Map() {
     }
 
     function searchClosestPoint(e) {
-        console.log("searching...")
         var posCursor = getCursorPosition(e)
-        let dist = 9999;
-        let temp = 9999;
-        let tempInformaticiens = informaticiens.map(objet => {
+        let tempInformaticiens = getPositionWithRightRatio();
+        //  let diff = tempInformaticiens.map(technicien => distanceEuclidienne(technicien.coords, posCursor))
+        //   console.log(diff)
+        let closestInfo = getClosestInformaticien(tempInformaticiens, posCursor)
+        console.log("Map : Hey React, bro, you mind re-rendering me with closestInformaticien=" + closestInfo + " instead of " + closestInformaticien + " ? Thanks !")
+        setCloserInformaticien(closestInfo)
+        updateInformaticien(closestInfo)
+        //console.log("Employé le plus proche trouvé en " + closestInformaticien + "Vérification au cas ou " + closestInfo)
+    }
+
+    function getPositionWithRightRatio() {
+        let duplicate = _.cloneDeep(informaticiens);
+        duplicate = duplicate.map(objet => {
             objet.coords[0] = objet.coords[0] * ratio;
             objet.coords[1] = objet.coords[1] * ratio;
             return objet
         })
-        let diff = tempInformaticiens.map(informaticien => distanceEuclidienne(informaticien.coords, posCursor))
-        console.log(diff)
-        tempInformaticiens.forEach(personel => {
-            let posBureau = personel.coords
-            temp = distanceEuclidienne(posBureau, posCursor);
+        // console.log(duplicate)
+        return duplicate
+    }
+
+    function getClosestInformaticien(arrayOfInformaticien, positionCurseur) {
+        let closestInfo = null;
+        let dist = 9999;
+        let temp = 9999;
+        arrayOfInformaticien.forEach(technicien => {
+            let positionTechnicien = technicien.coords
+            temp = distanceEuclidienne(positionTechnicien, positionCurseur);
             if (temp < dist) {
                 dist = temp
-                setCloserInformaticien(posBureau)
-                console.log(posBureau + "...")
+                closestInfo = positionTechnicien
+                //    console.log(posBureau + "...")
             }
-            return personel
         })
-
-        console.log("Employé le plus proche trouvé en " + closestInformaticien)
-
+        return closestInfo;
     }
 
     function getCursorPosition(e) {
@@ -135,7 +148,6 @@ function Map() {
                 isEqual = false;
             }
         }
-
         return isEqual;
     }
 
@@ -150,44 +162,43 @@ function Map() {
         if (campusSelectionne.target.value.localeCompare("fouillole") === 0) {
             image = Guadeloupe;
             setInitialWidth(WIDTH_CARTE_FOUILLOLE)
-            positionDeBase = initialPosFouillole
+            positionDeBase = _.cloneDeep(initialPosFouillole)
         } else {
             image = Shoelcher;
             setInitialWidth(WIDTH_CARTE_SHOELCHER);
-            positionDeBase = initialPosShoelcher
+            positionDeBase = _.cloneDeep(initialPosShoelcher)
         }
         setCarte(image)
         setInitialPos(positionDeBase)
-        setInformaticiens(positionDeBase)
+        // setInformaticiens(positionDeBase)
     }
 
-
-    useEffect(() => {
-        let newInformaticiens = informaticiens
-        let canvas = document.querySelector("div#testMap div canvas")
-        let context = canvas.getContext('2d')
-        //     console.log(informaticiens)
-        let placeholder = informaticiens;
-        placeholder.forEach(personnel => {
-            if (arrayEgalite(personnel.coords, closestInformaticien)) {
-                console.log("Celui qui sera rouge est :", personnel._id, "parce que ce dernier et la variable closestInformaticien vaut :", closestInformaticien)
-                newInformaticiens = initialPos.map(individu => {
-                    let scaledCoords = [individu.coords[0] * ratio, individu.coords[1] * ratio, individu.coords[2]]
-                    if (arrayEgalite(scaledCoords, personnel.coords)) {
-                        //            console.log("True dat")
-                        individu.preFillColor = 'red'
-                    } else {
-                        individu.preFillColor = 'blue'
-                    }
-                    return individu
-                })
-                personnel.preFillColor = 'red'
+    function updateInformaticien(positionDuPlusProche) {
+        let newInformaticiens
+        var choosenOne = positionDuPlusProche
+        //      if (choosenOne[0] !==9999) {
+        newInformaticiens = _.cloneDeep(initialPos)
+        newInformaticiens = newInformaticiens.map(individu => {
+            let scaledCoords = [individu.coords[0] * ratio, individu.coords[1] * ratio, individu.coords[2]]
+            console.log("UseEffect : In here, for" + individu._id + " scaledCoords=" + scaledCoords + " and choosenOne=" + choosenOne + " , so comparing them give us " + _.isEqual(scaledCoords, choosenOne))
+            if (arrayEgalite(scaledCoords, choosenOne)) {
+                individu.preFillColor = 'red'
+            } else {
+                individu.preFillColor = 'blue'
             }
-            return personnel
-        }, [closestInformaticien])
+            return individu
+        })
+        console.log("Map : Hey React, bro, you mind re-rendering me with informaticiens=" + JSON.stringify(newInformaticiens) + " instead of " + JSON.stringify(informaticiens) + " ? Thanks, you're a lifesaver !")
         setInformaticiens(newInformaticiens)
-        test();
-    }, [closestInformaticien, initialPos, initialWidth, carte, width])
+
+        //    }
+    }
+
+    /* useEffect(() => {
+         console.log("UseEffect : I'm from the render using closestInformaticien = "+ closestInformaticien)
+         updateInformaticien();
+     }, [closestInformaticien, initialPos,ratio])
+ */
     return (
         <div className={"contact_Map"}>
             <h5>Besoin d'aide ? Trouver l'informaticien le plus proche ! </h5>
@@ -204,7 +215,7 @@ function Map() {
                     width={width}
                     imgWidth={initialWidth}
                 />
-                <p id={"closer"}></p>
+                <p id={"closer"}>{JSON.stringify([...informaticiens])}</p>
                 {/*console.log(document.querySelector("div#testMap div"))*/}
             </div>
         </div>

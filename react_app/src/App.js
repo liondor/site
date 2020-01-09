@@ -90,24 +90,24 @@ class App extends Component {
         );
     }
 
+    /*
 
-
-        loadDestinations() {
-            // Fetch Destinations.
-            fetch(LIST_URL, {mode: 'cors'})
-                .then(function (response) {
-                    return response.json();
-                })
-                .then((data) => this.updateData(data))
-                .catch(err => console.log('Fetching Destinations Failed', err));
-        }
-
+            loadDestinations() {
+                // Fetch Destinations.
+                fetch(LIST_URL, {mode: 'cors'})
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then((data) => this.updateData(data))
+                    .catch(err => console.log('Fetching Destinations Failed', err));
+            }
+    */
         updateData(responseData) {
             this.setState({database: responseData});
         }
 
         componentWillMount() {
-            this.loadDestinations();
+            // this.loadDestinations();
         }
 
         componentDidUpdate() {
