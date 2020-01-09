@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Outil from "./Outils";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 function ListeOutils(props) {
     var [categories, setCatergories] = useState(null)
@@ -11,6 +12,7 @@ function ListeOutils(props) {
         } else {
             pager = ""
         }
+        console.log("On lance le fetch ?")
         fetch('http://localhost:8900/dsin/web/jsonapi/node/categorie_outils?include=field_image&fields[node--categorie_outils]=title,field_description,field_description.value,field_image' + pager, {
             method: 'GET',
             headers: {
@@ -18,17 +20,25 @@ function ListeOutils(props) {
                 'Accept': 'application/vnd.api+json',
             },
         }).then((response) => response.json()
-        ).then((data) => setCatergories(data),
+        ).then((data) => {
+                console.log(data);
+                setCatergories(data)
+            },
         ).catch(function (error) {
             console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
         })
-        if (categories !== null && categories !== undefined) {
+
+    }, [props.token.access_token, props.limit])
+
+    useEffect(() => {
+        console.log("On va voir si catégories contient quelque chose")
+        let result = categories
+        if (result !== null && result !== undefined) {
+            console.log("Dedans !")
             let test = pairData()
             setFormattedCategories(test)
-            let test2 = formattedCategories
-            console.log(test2);
         }
-    }, [props.token])
+    }, [categories])
 
     function pairData() {
         let content = categories.data
@@ -69,7 +79,7 @@ function ListeOutils(props) {
                 <Outil id={item.titre + item.urlImage} titre={item.titre} description={item.description}
                        urlImage={item.urlImage}>Test</Outil>))
         else
-            return <p>Loading...</p>
+            return <CircularProgress/>
     }
     return (
         <div id={"#listeOutils"} className={"conteneur"}>
