@@ -394,6 +394,13 @@ input[type="text"] {
     width: 100%;
 }
 
+.lessImportantText {
+    color: hsl(214, 7%, 47%);
+}
+
+#listeOutils {
+    width: 100%;
+}
 
 .logo {
     width: 100%;
@@ -404,9 +411,6 @@ input[type="text"] {
     grid-area: logo;
 }
 
-.lessImportantText {
-    color: hsl(214, 7%, 47%);
-}
 
 .majuscule {
     text-transform: uppercase;

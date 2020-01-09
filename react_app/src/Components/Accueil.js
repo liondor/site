@@ -24,7 +24,7 @@ const Accueil = (props) => {
                 <div className={"greyBackground"}/>
                 <div className={"accueilOutilsSubWrapper"}>
                     <h2 className={"titreSection "}>Outils numériques populaires </h2>
-                    <div className={"accueilOutils conteneur"}>
+                    <div className={"accueilOutils"}>
                         <ListeOutils token={props.token} limit={3}/>
                     </div>
                     <Bouton marge={"30px"} contenu={"Plus d'outils"} type={"main"} arrow={true}/>
