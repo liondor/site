@@ -5,7 +5,7 @@ import Footer from "./Components/Footer/Footer";
 import Accueil from "./Components/Accueil"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import TwoOptions from "./Components/TwoOptions";
-import ListeOutils from "./Components/ListeOutils";
+import Liste from "./Components/Liste";
 import OutilPresentation from "./Components/OutilPresentation";
 import Contact from "./Components/Contact";
 import GridTwo from "./Components/GridTwo";
@@ -46,7 +46,7 @@ class App extends Component {
                             <Route path="/outils">
                                 <h1 className={"titreSection"}>Outils numériques et prestations offertes par
                                     l'université</h1>
-                                <ListeOutils token={this.state.token}/>
+                                <Liste token={this.state.token} type={'outils'}/>
                             </Route>
                             <Route path="/exempleOutil">
                                 <OutilPresentation/>

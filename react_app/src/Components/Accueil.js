@@ -2,7 +2,7 @@ import React from 'react'
 import Carte from "./Cartes/Carte";
 import Bouton from "./Bouton";
 import PhotoText from "./PhotoText";
-import ListeOutils from "./ListeOutils";
+import Liste from "./Liste";
 
 const Accueil = (props) => {
     return (
@@ -25,7 +25,7 @@ const Accueil = (props) => {
                 <div className={"accueilOutilsSubWrapper"}>
                     <h2 className={"titreSection "}>Outils numériques populaires </h2>
                     <div className={"accueilOutils"}>
-                        <ListeOutils token={props.token} limit={3}/>
+                        <Liste token={props.token} limit={3} type={'article'}/>
                     </div>
                     <Bouton marge={"30px"} contenu={"Plus d'outils"} type={"main"} arrow={true}/>
                 </div>

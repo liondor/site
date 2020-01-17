@@ -2,18 +2,30 @@ import React, {useEffect, useState} from 'react'
 import Outil from "./Outils";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-function ListeOutils(props) {
+function Liste(props) {
     var [categories, setCatergories] = useState(null)
     var [formattedCategories, setFormattedCategories] = useState(null)
     var pager = 'page[limit]=' + props.limit;
+    var content_type = ''
+    const URL_API = "http://localhost:8900/dsin/web/jsonapi/node/"
     useEffect(() => {
         if (props.limit !== null && props.limit !== undefined) {
             pager = '&page[limit]=' + props.limit;
         } else {
             pager = ""
         }
-
-        fetch('http://localhost:8900/dsin/web/jsonapi/node/categorie_outils?include=field_image&fields[node--categorie_outils]=title,field_description,field_description.value,field_image' + pager, {
+        if (props.type !== null && props.type !== undefined) {
+            if (props.type === "outils") {
+                content_type = "categorie_outils"
+            }
+            if (props.type === "article") {
+                content_type = "article"
+            }
+            if (props.type === "conseil") {
+                content_type = "conseils"
+            }
+        }
+        fetch(URL_API + content_type + '?include=field_image&fields[node--' + content_type + ']=title,field_description,field_description.value,field_image' + pager, {
             method: 'GET',
             headers: {
                 'Autohrization': 'Beaver' + props.token.access_token,
@@ -41,11 +53,13 @@ function ListeOutils(props) {
     function pairData() {
         let content = categories.data
         let images = categories.included
-        images = images.map(image => {
-            let imageURL = image.attributes.uri.url
-            let imageID = image.id
-            return {id: imageID, url: imageURL}
-        })
+        if (images) {
+            images = images.map(image => {
+                let imageURL = image.attributes.uri.url
+                let imageID = image.id
+                return {id: imageID, url: imageURL}
+            })
+        }
         console.log(images);
         let pairedArray = content.map(categorie => {
             let imageID
@@ -63,7 +77,12 @@ function ListeOutils(props) {
                 imageURL = "/dsin/web/sites/default/files/default_images/question-mark.png"
             }
             titre = categorie.attributes.title
-            content = categorie.attributes.field_description.processed
+            console.log(categorie.attributes)
+            if (categorie.attributes.field_description) {
+                content = categorie.attributes.field_description.value
+            } else {
+                content = ""
+            }
             result = {titre: titre, description: content, urlImage: imageURL}
             return result;
         })
@@ -79,6 +98,7 @@ function ListeOutils(props) {
         else
             return <CircularProgress/>
     }
+
     return (
         <div id={"#listeOutils"} className={"conteneur"}>
             {renderOutils()}
@@ -87,4 +107,4 @@ function ListeOutils(props) {
     );
 }
 
-export default ListeOutils
+export default Liste
