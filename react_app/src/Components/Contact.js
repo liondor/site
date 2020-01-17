@@ -8,6 +8,15 @@ const Contact = () => {
     function handleSubmit(e) {
         e.preventDefault();
     }
+
+    function checkCookies(e) {
+
+        window.location.href = "https://auth.martinique.univ-ag.fr/cas/login?service=http://dsin.univ-ag.fr/login"
+        // window.location.href="http://localhost:3000/Login"
+
+
+    }
+
     return (
         <div>
             <Breadcrumbs/>
@@ -30,6 +39,7 @@ const Contact = () => {
                 <Annuaire/>
             </div>
             <Map/>
+            <Bouton contenu={"Test Auth"} type={"main"} onClick={checkCookies}></Bouton>
         </div>
     );
 }

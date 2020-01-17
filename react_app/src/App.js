@@ -11,6 +11,7 @@ import Contact from "./Components/Contact";
 import GridTwo from "./Components/GridTwo";
 import Projet from "./Components/Projet";
 import ScrollToTop from "./Components/ScrollToTop";
+import Login from "./Login";
 
 const LIST_URL = 'http://localhost:8900/dsin/web/jsonapi/node/conseils?fields[node--conseils]=title,body,field_image&fields[file--file]=uri&include=field_image';
 var qs = require('qs');
@@ -63,6 +64,10 @@ class App extends Component {
                             <Route path="/projets">
                                 <h1 className={"titreSection"}>Nos projets</h1>
                                 <Projet/>
+                            </Route>
+                            <Route path="/login">
+                                <Login/>
+
                             </Route>
                         </Switch>
                         <Footer/>

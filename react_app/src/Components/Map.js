@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import ImageMapper from 'react-image-mapper';
 import Guadeloupe from './IMG/Guadeloupe.png'
 import Shoelcher from './IMG/schoelcher.jpg'
@@ -12,48 +12,67 @@ function Map() {
         _id: "CUR",
         shape: "circle",
         coords: [333, 575, 10],
-        preFillColor: "blue"
+        preFillColor: "blue",
+        fillColor: 'red',
+        active: false
+
     }, {
         _id: "ISEF",
         shape: "circle",
         coords: [377, 209, 10],
-        preFillColor: "green"
+        preFillColor: "blue",
+        fillColor: 'red',
+        active: false
     }, {
         _id: "BU",
         shape: "circle",
         coords: [412, 421, 10],
-        preFillColor: "blue"
+        preFillColor: "blue",
+        fillColor: 'red',
+        active: false
     }, {
         _id: "UFR LETTRES",
         shape: "circle",
         coords: [402, 340, 10],
-        preFillColor: "blue"
+        preFillColor: "blue",
+        fillColor: 'red',
+        active: false
     },]
     const initialPosFouillole = [{
         _id: "1",
         shape: "circle",
         coords: [486, 127, 10],
-        preFillColor: "blue"
+        preFillColor: "blue",
+        fillColor: 'red',
+        active: false
     }, {
         _id: "2",
         shape: "circle",
         coords: [480, 480, 10],
-        preFillColor: "green"
+        preFillColor: "blue",
+        fillColor: 'red',
+        active: false
     }, {
         _id: "3",
         shape: "circle",
         coords: [216, 402, 10],
-        preFillColor: "blue"
+        preFillColor: "blue",
+        fillColor: 'red',
+        active: false
     }, {
         _id: "4",
         shape: "circle",
         coords: [902, 340, 10],
-        preFillColor: "blue"
+        preFillColor: "blue",
+        fillColor: 'red',
+        active: false
     }, {
         _id: "5",
         shape: "circle",
         coords: [1175, 108, 10],
-        preFillColor: "blue"
+        preFillColor: "blue",
+        fillColor: 'red',
+        active: false
     }]
 
 
@@ -61,9 +80,10 @@ function Map() {
     const WIDTH_CARTE_FOUILLOLE = 1274;
 
 
-    const [closestInformaticien, setCloserInformaticien] = useState([9999, 9999])
+    const closestInformaticien = useRef([9999, 9999])
     const [initialPos, setInitialPos] = useState(initialPosShoelcher)
-    const [informaticiens, setInformaticiens] = useState(initialPos)
+    const informaticiens = useRef(initialPos)
+    const [mapObjet, setMapObjet] = useState({name: "Carte du campus", areas: informaticiens})
     const [carte, setCarte] = useState(Shoelcher)
     const [width, setWidth] = useState(window.innerWidth * .6)
     const [initialWidth, setInitialWidth] = useState(WIDTH_CARTE_SHOELCHER)
@@ -90,20 +110,20 @@ function Map() {
         //  let diff = tempInformaticiens.map(technicien => distanceEuclidienne(technicien.coords, posCursor))
         //   console.log(diff)
         let closestInfo = getClosestInformaticien(tempInformaticiens, posCursor)
-        console.log("Map : Hey React, bro, you mind re-rendering me with closestInformaticien=" + closestInfo + " instead of " + closestInformaticien + " ? Thanks !")
-        setCloserInformaticien(closestInfo)
+        //    console.log("Map : Hey React, bro, you mind re-rendering me with closestInformaticien=" + closestInfo + " instead of " + closestInformaticien + " ? Thanks !")
+        closestInformaticien.current = closestInfo;
         updateInformaticien(closestInfo)
         //console.log("Employé le plus proche trouvé en " + closestInformaticien + "Vérification au cas ou " + closestInfo)
     }
 
     function getPositionWithRightRatio() {
-        let duplicate = _.cloneDeep(informaticiens);
+        let duplicate = _.cloneDeep(informaticiens.current);
         duplicate = duplicate.map(objet => {
             objet.coords[0] = objet.coords[0] * ratio;
             objet.coords[1] = objet.coords[1] * ratio;
             return objet
         })
-        // console.log(duplicate)
+
         return duplicate
     }
 
@@ -127,7 +147,7 @@ function Map() {
         var rect = e.target.getBoundingClientRect();
         const x = e.clientX - rect.left
         const y = e.clientY - rect.top
-        console.log("J'ai cliqué en :", x, y)
+        //console.log("J'ai cliqué en :", x, y)
         return [x, y]
 
     }
@@ -180,25 +200,47 @@ function Map() {
         newInformaticiens = _.cloneDeep(initialPos)
         newInformaticiens = newInformaticiens.map(individu => {
             let scaledCoords = [individu.coords[0] * ratio, individu.coords[1] * ratio, individu.coords[2]]
-            console.log("UseEffect : In here, for" + individu._id + " scaledCoords=" + scaledCoords + " and choosenOne=" + choosenOne + " , so comparing them give us " + _.isEqual(scaledCoords, choosenOne))
-            if (arrayEgalite(scaledCoords, choosenOne)) {
-                individu.preFillColor = 'red'
+            //     console.log("UseEffect : In here, for" + individu._id + " scaledCoords=" + scaledCoords + " and choosenOne=" + choosenOne + " , so comparing them give us " + _.isEqual(scaledCoords, choosenOne))
+            if (_.isEqual(scaledCoords, choosenOne)) {
+                individu.active = true
+                individu.preFillColor = individu.fillColor
+
             } else {
-                individu.preFillColor = 'blue'
+                individu.active = false
+                individu.preFillColor = "blue"
+
             }
             return individu
         })
-        console.log("Map : Hey React, bro, you mind re-rendering me with informaticiens=" + JSON.stringify(newInformaticiens) + " instead of " + JSON.stringify(informaticiens) + " ? Thanks, you're a lifesaver !")
-        setInformaticiens(newInformaticiens)
+        //      console.log("Map : Hey React, bro, you mind re-rendering me with informaticiens=" + JSON.stringify(newInformaticiens) + " instead of " + JSON.stringify(informaticiens) + " ? Thanks, you're a lifesaver !")
+        // setInformaticiens(newInformaticiens)
+        if (newInformaticiens !== undefined)
+            informaticiens.current = newInformaticiens
 
+        setMapObjet(m => ({...m, areas: informaticiens.current}))
+        setWidth(w => w - .01)
+
+        //console.log("Just sandwiching setInformaticiens to make sure this line of code is read")
         //    }
     }
 
-    /* useEffect(() => {
-         console.log("UseEffect : I'm from the render using closestInformaticien = "+ closestInformaticien)
-         updateInformaticien();
-     }, [closestInformaticien, initialPos,ratio])
- */
+    function renderMap() {
+        //     console.log("This should get triggered on each re-render", informaticiens.current)
+        var map = {name: "test", areas: informaticiens.current}
+        return (<ImageMapper
+            clas="map"
+            src={carte}
+            map={map}
+            width={width}
+            imgWidth={initialWidth}
+        />)
+    }
+
+    useEffect(() => {
+        //console.log("UseEffect : I'm from the render using closestInformaticien = "+ closestInformaticien.current)
+        updateInformaticien(closestInformaticien.current);
+    }, [initialPos, informaticiens, closestInformaticien])
+
     return (
         <div className={"contact_Map"}>
             <h5>Besoin d'aide ? Trouver l'informaticien le plus proche ! </h5>
@@ -208,16 +250,11 @@ function Map() {
                 <MenuItem value={"shoelcher"}>Campus de Schoelcher</MenuItem>
             </Select>
             <div id={"testMap"} onClick={searchClosestPoint}>
-                <ImageMapper
-                    clas="map"
-                    src={carte}
-                    map={{name: "Test", areas: informaticiens}}
-                    width={width}
-                    imgWidth={initialWidth}
-                />
-                <p id={"closer"}>{JSON.stringify([...informaticiens])}</p>
-                {/*console.log(document.querySelector("div#testMap div"))*/}
+                {renderMap()}
+
             </div>
+            {/*<p id={"closer"}>{JSON.stringify([...informaticiens])}</p>
+            console.log(document.querySelector("div#testMap div"))*/}
         </div>
     );
 
