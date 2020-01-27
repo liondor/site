@@ -11,7 +11,7 @@ const Contact = () => {
 
     function checkCookies(e) {
 
-        window.location.href = "https://auth.martinique.univ-ag.fr/cas/login?service=http://dsin.univ-ag.fr/login"
+        window.location.href = "https://auth.martinique.univ-ag.fr/cas/login?service=http://172.15.255.255/login"
         // window.location.href="http://localhost:3000/Login"
 
 

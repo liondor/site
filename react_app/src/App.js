@@ -41,7 +41,7 @@ class App extends Component {
                             </Route>
                             <Route path="/about">
                                 <h1 className={"titreSection"}> Présentation des pôles </h1>
-                                <GridTwo/>
+                                <GridTwo token={this.state.token}/>
                             </Route>
                             <Route path="/outils">
                                 <h1 className={"titreSection"}>Outils numériques et prestations offertes par

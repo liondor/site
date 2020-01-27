@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Outil from "./Outils";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Carte from "./Cartes/Carte";
 
 function Liste(props) {
     var [categories, setCatergories] = useState(null)
@@ -18,10 +19,10 @@ function Liste(props) {
             if (props.type === "outils") {
                 content_type = "categorie_outils"
             }
-            if (props.type === "article") {
+            if (props.type === "articles") {
                 content_type = "article"
             }
-            if (props.type === "conseil") {
+            if (props.type === "conseils") {
                 content_type = "conseils"
             }
         }
@@ -60,7 +61,7 @@ function Liste(props) {
                 return {id: imageID, url: imageURL}
             })
         }
-        console.log(images);
+        //   console.log(images);
         let pairedArray = content.map(categorie => {
             let imageID
             let titre
@@ -77,7 +78,7 @@ function Liste(props) {
                 imageURL = "/dsin/web/sites/default/files/default_images/question-mark.png"
             }
             titre = categorie.attributes.title
-            console.log(categorie.attributes)
+            //   console.log(categorie.attributes)
             if (categorie.attributes.field_description) {
                 content = categorie.attributes.field_description.value
             } else {
@@ -89,19 +90,25 @@ function Liste(props) {
         return pairedArray
     }
 
-    function renderOutils() {
+    function renderChild() {
         let result = formattedCategories
-        if (result !== null)
+        if (result !== null & content_type !== undefined) {
+            if (props.type === 'outils')
             return result.map(item => (
                 <Outil id={item.titre + item.urlImage} titre={item.titre} description={item.description}
                        urlImage={item.urlImage}>Test</Outil>))
+            if (props.type === 'conseils' || props.type === 'articles')
+                return result.map(item => (
+                    <Carte id={item.titre + item.urlImage} titre={item.titre} description={item.description}
+                           urlImage={item.urlImage}>Test</Carte>))
+        }
         else
             return <CircularProgress/>
     }
 
     return (
         <div id={"#listeOutils"} className={"conteneur"}>
-            {renderOutils()}
+            {renderChild()}
 
         </div>
     );

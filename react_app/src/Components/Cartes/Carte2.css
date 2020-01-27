@@ -35,7 +35,8 @@
     text-align: left;
 }
 
-.carte img {
+.thumbnail {
+    height: 28vh;
     width: 100%;
     filter: brightness(85%);
 

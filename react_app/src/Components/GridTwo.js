@@ -1,50 +1,51 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-const GridTwo = () => {
+var HtmlToReactParser = require('html-to-react').Parser;
+const GridTwo = (props) => {
+    var [poles, setPoles] = useState(null)
+    const URL_API = "http://localhost:8900/dsin/web/jsonapi/node/"
+    useEffect(() => {
+
+        fetch(URL_API + 'poles_dsin?fields[node--poles_dsin]=title,body,body.value', {
+            method: 'GET',
+            headers: {
+                'Autohrization': 'Beaver' + props.token.access_token,
+                'Accept': 'application/vnd.api+json',
+            },
+        }).then((response) => response.json()
+        ).then((data) => {
+                console.log(data.data)
+                setPoles(data.data)
+            },
+        ).catch(function (error) {
+            console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+        })
+
+    }, [props.token.access_token])
     return (
         <div id={"grid2"} className={"grid2"}>
-            <h2> Pôle Application Métiers </h2>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel dictum dolor.
-                Etiam et ipsum elementum, accumsan nunc id, eleifend lacus. Morbi malesuada sem ut aliquet tempus.
-                Maecenas quis faucibus lorem, ut molestie est. Duis et eleifend lectus, vitae iaculis leo.<br/>
-                Praesent finibus ligula in tortor vulputate, sit amet placerat lacus finibus. Nam in erat nec diam
-                gravida tempus. <br/><br/>
-                Vestibulum cursus cursus erat nec fringilla. In condimentum accumsan urna, quis facilisis risus
-                hendrerit et. Nam dolor tellus, laoreet nec eros at, mattis bibendum turpis. Fusce et enim congue,
-                sodales ligula eget, ultrices dui. Pellentesque venenatis felis leo, quis hendrerit sem convallis
-                ornare. Pellentesque gravida purus sit amet neque aliquet condimentum. Sed aliquam enim eu lectus
-                venenatis sagittis.
-                Nullam aliquet magna sed odio accumsan mattis. Nunc non augue quis massa volutpat rhoncus.
-            </p>
-
-            <h2> Pôle Infrastructure centrale</h2>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel dictum dolor.
-                Etiam et ipsum elementum, accumsan nunc id, eleifend lacus. Morbi malesuada sem ut aliquet tempus.
-                Maecenas quis faucibus lorem, ut molestie est. Duis et eleifend lectus, vitae iaculis leo.<br/>
-                Praesent finibus ligula in tortor vulputate, sit amet placerat lacus finibus. Nam in erat nec diam
-                gravida tempus. <br/><br/>
-                Vestibulum cursus cursus erat nec fringilla. In condimentum accumsan urna, quis facilisis risus
-                hendrerit et. Nam dolor tellus, laoreet nec eros at, mattis bibendum turpis. Fusce et enim congue,
-                sodales ligula eget, ultrices dui. Pellentesque venenatis felis leo, quis hendrerit sem convallis
-                ornare. Pellentesque gravida purus sit amet neque aliquet condimentum. Sed aliquam enim eu lectus
-                venenatis sagittis.
-                Nullam aliquet magna sed odio accumsan mattis. Nunc non augue quis massa volutpat rhoncus.
-            </p>
-
-            <h2> Pôle Infrastructure centrale</h2>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel dictum dolor.
-                Etiam et ipsum elementum, accumsan nunc id, eleifend lacus. Morbi malesuada sem ut aliquet tempus.
-                Maecenas quis faucibus lorem, ut molestie est. Duis et eleifend lectus, vitae iaculis leo.<br/>
-                Praesent finibus ligula in tortor vulputate, sit amet placerat lacus finibus. Nam in erat nec diam
-                gravida tempus. <br/><br/>
-                Vestibulum cursus cursus erat nec fringilla. In condimentum accumsan urna, quis facilisis risus
-                hendrerit et. Nam dolor tellus, laoreet nec eros at, mattis bibendum turpis. Fusce et enim congue,
-                sodales ligula eget, ultrices dui. Pellentesque venenatis felis leo, quis hendrerit sem convallis
-                ornare. Pellentesque gravida purus sit amet neque aliquet condimentum. Sed aliquam enim eu lectus
-                venenatis sagittis.
-                Nullam aliquet magna sed odio accumsan mattis. Nunc non augue quis massa volutpat rhoncus. </p>
+            {renderChild()}
         </div>
     );
+
+    function parseStringToHTML(stringContainingHtmlTags) {
+        var htmlToReactParser = new HtmlToReactParser();
+        var reactElement = htmlToReactParser.parse(stringContainingHtmlTags);
+        return reactElement
+
+    }
+
+    function renderChild() {
+        let result = poles
+        if (result !== null) {
+            return result.map(item => (<>
+                <h2> {item.attributes.title}</h2> <>{parseStringToHTML(item.attributes.body.value)}
+            </>
+            </>))
+        } else
+            return <CircularProgress/>
+    }
 
 
 }
